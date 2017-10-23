@@ -133,5 +133,7 @@ if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   cd - > /dev/null
 fi
 
+node server.js
+
 ##################################################################################################################################
 echo "Finished successfully."
