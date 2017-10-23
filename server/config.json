@@ -1,6 +1,6 @@
 {
-	"confirmation_base_url": "http://localhost:6108/#/confirm/",
-	"downloads_base_url": "http://localhost:6108/#/downloads/",
+	"confirmation_base_url": "http://localhost/#/confirm/",
+	"downloads_base_url": "http://localhost/#/downloads/",
 	"emails_sender": "CodeWars <z.wand19@gmail.com>",
 	"gmail_user_name": "z.wand19@gmail.com",
 	"gmail_password": "H0ckeyrul3s",
