@@ -1,5 +1,5 @@
 Path = require 'path'
-port = process.env.PORT ? 80
+port = process.env.PORT ? 1337
 baseFolder = Path.join __dirname, '../', '/dist'
 Logger = require './utilities/logger'
 
