@@ -1,0 +1,14 @@
+{
+	"confirmation_base_url": "http://localhost:6108/#/confirm/",
+	"downloads_base_url": "http://localhost:6108/#/downloads/",
+	"emails_sender": "CodeWars <z.wand19@gmail.com>",
+	"gmail_user_name": "z.wand19@gmail.com",
+	"gmail_password": "H0ckeyrul3s",
+	"log_api_failures": true,
+	"log_api_failure_game_statuses": false,
+	"minutes_to_hold_games_in_memory": 120,
+	"mongodb_url": "mongodb://zwand:Ch1ck3nrun@clonecraftdev-shard-00-00-kjv3z.mongodb.net:27017,clonecraftdev-shard-00-01-kjv3z.mongodb.net:27017,clonecraftdev-shard-00-02-kjv3z.mongodb.net:27017/test?ssl=true&replicaSet=CloneCraftDev-shard-0&authSource=admin",
+	"socket_garbage_cleanup_interval": 600000,
+	"token_lifetime_ms": 43200000,
+	"tournament_time": { "hour": 22, "minute": 0, "dayOfWeek": 0 }
+}
