@@ -208,7 +208,7 @@ module.exports = function(grunt) {
     file_append: {
       default_options: {
         files: {
-          './start.js': {
+          './server.js': {
             append: "//"
           }
         }
