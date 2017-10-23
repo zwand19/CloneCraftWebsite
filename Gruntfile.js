@@ -410,7 +410,7 @@ module.exports = function(grunt) {
     return require('./server/server');
   });
   grunt.registerTask('build', ['clean:working', 'coffeelint', 'copy:app', 'ngShim', 'coffee:app', 'less', 'markdown', 'template:indexDev', 'copy:dev']);
-  grunt.registerTask('default', ['build', 'launch', 'watch:dev']);
+  grunt.registerTask('default', ['build']);
   grunt.registerTask('server', ['build', 'launch', 'watch:dev']);
   grunt.registerTask('azure', ['build']);
   grunt.registerTask('test-server', ['clean:working', 'copy:debug', 'coffee:debug', 'jasmine_node:server']);
