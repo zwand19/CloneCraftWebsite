@@ -73,6 +73,6 @@
     "npm": "3.9.5"
   },
   "scripts": {
-    "start": "node ./start.js"
+    "start": "node ./server.js"
   }
 }
