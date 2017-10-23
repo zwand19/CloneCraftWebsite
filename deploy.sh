@@ -128,7 +128,7 @@ fi
 # 5. Run Grunt Task
 if [ -e "$DEPLOYMENT_TARGET/Gruntfile.js" ]; then
   cd "$DEPLOYMENT_TARGET"
-  eval ./node_modules/.bin/grunt
+  eval ./node_modules/.bin/grunt azure
   exitWithMessageOnError "Grunt failed"
   cd - > /dev/null
 fi

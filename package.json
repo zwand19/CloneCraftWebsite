@@ -28,7 +28,7 @@
     "body-parser": "^1.14.1",
     "bower": "^1.6.5",
     "child-process-promise": "^0.2.0-SNAPSHOT.1389671754086",
-    "coffee-script": "^1.6.3",
+    "coffee-script": "^1.12.7",
     "coffeelint": "^1.13.0",
     "cross-spawn": "^0.1.7",
     "duel": "^0.5.2",
