@@ -1,0 +1,1005 @@
+@import "pure.css";
+@import "email.css";
+@import "bootstrap.less";
+@import "game-styles.less";
+@import "splash.less";
+@import "about.less";
+
+@darkBackground: #35362E;
+@darkerLinkColor: #193890;
+@darkestBackground: #222;
+@disabledButtonColor: #9db0fe;
+@drawColor: #e2d400; //color of text for draws
+@fontFamily: Alphelon, sans-serif;
+@greyBackground: #CCC2B0;
+@listWidth: 275px;
+@navHeight: 50px;
+@navWidth: 160px;
+@terraCottaRedBackground: #BB8A75;
+
+@font-face {
+    font-family: @fontFamily;
+    src: url('../alepholon.ttf') format 'ttf' }
+
+
+a {
+    cursor: pointer;
+}
+
+.hand-cursor {
+    cursor: pointer;
+}
+
+/* Overrides */
+@media (max-width: 1200px) {
+    .center-not-lg {
+        text-align: center;
+    }
+}
+@media (min-width: 768px) {
+    .navbar-nav.navbar-right:last-child {
+        margin-right: -12%;
+    }
+}
+
+@media (min-width: 768px) {
+    .container > .navbar-header, .container > .navbar-collapse {
+        margin-left: -12%;
+    }
+}
+
+@media (max-width: 912px) {
+    .nav > li > a {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+}
+
+.navbar-toggle {
+    background-color: rgba(50,50,50,.1);
+    border: 1px solid #666;
+}
+
+.icon-bar {
+    background-color: #666;
+}
+
+.navbar-fill {
+    width: 100;
+    height: @navHeight;
+}
+
+#layout {
+    padding-left: calc(@navWidth + @listWidth);
+    width: 100%;
+    background: white;
+    height: 100%;
+}
+
+#nav {
+    width: @navWidth;
+    margin-left: calc((@navWidth + @listWidth) * -1);
+    top: @navHeight;
+}
+
+@media (min-width: 40em) {
+    #list {
+        width: initial;
+    }
+}
+#list {
+    margin-left: -@listWidth;
+    width: @listWidth;
+    background-color: #fff;
+    top: @navHeight;
+}
+
+#main {
+    padding: 0 20px;
+    height: 100%;
+    background: white;
+    width: 100%;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.email-item {
+    cursor: pointer;
+
+    &:hover {
+        background-color: lightgrey;
+    }
+}
+
+.email-item-unread {
+    border-left: 6px solid #1b98f8;
+}
+
+/* Sectional */
+
+html, body {
+    margin:0;
+    padding:0;
+    height:100%;
+    background: @greyBackground;
+}
+
+div#container {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    background: @greyBackground;
+    height: auto !important;
+    height: 100%;
+    /* IE6: treaded as min-height; */
+    min-height: 100%;
+}
+
+div#content {
+    height: 100%;
+    height: calc(~"100% - 50px");
+    width: 100%;
+    position: absolute;
+}
+
+p {
+    line-height: 28px;
+}
+
+code {
+    border: 1px solid darkgray;
+    background-color: rgb(222, 236, 241) !important;
+}
+
+.flipped {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
+}
+.ng-cloak {
+    display: none !important;
+}
+
+.floatNone {
+    clear: both;
+    position: relative;
+}
+
+.jumbotron, .banner {
+    padding: 10px 0;
+    margin-bottom: 10px;
+}
+
+.banner {
+    background-color: #5F5F5F;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    z-index: 2000;
+}
+
+.divider-line {
+    width: 2px;
+    position: absolute;
+    left: 50%;
+    margin-top: -25px;
+    height: 100%;
+    background-color: rgba(200, 200, 200, .5);
+}
+
+.selected-doc-menu {
+    background-color: rgb(55, 60, 90);
+}
+
+.not-anchor:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.not-anchor {
+    color: inherit;
+}
+
+.cell-pad-no-hover {
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid darkgray;
+    width: 95%;
+    margin-bottom: 20px;
+}
+
+.cell-pad {
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+    border: 1px solid darkgray;
+    width: 95%;
+    margin-bottom: 20px;
+}
+
+.cell-pad:hover {
+    border: 1px solid blue;
+    cursor: pointer;
+}
+
+.cell-pad-image {
+    width: 100%;
+    padding-bottom: 10px;
+}
+
+.coming-soon {    
+    position: absolute;
+    left: 10%;
+    left: calc(~"20% - 10px");
+    width: 60%;
+}
+
+.dashed-border {
+    border: 1px dashed black;
+}
+
+.display-block {
+    display: block;
+}
+
+.container {
+    width: 80%;
+    h1 {
+        margin: 10px 25px 10px 0;
+        display: inline-block;
+    }
+    p {
+        display: inline-block;
+    }
+}
+
+.darkest-background {
+    background-color: @darkestBackground;
+}
+
+.grey-background {
+    background-color: @greyBackground;
+}
+
+.scoreboard-wrapper {
+    font-size: 1em;
+}
+.score {
+    background-color: blue;
+    width: 100%;
+    position: absolute;
+    bottom: 85px;
+    border: 3px solid black;
+}
+.match {
+    position: absolute;
+    display: inline-block;
+    width: 150px;
+}
+.record {
+    position: absolute;
+    bottom: 50px;
+    margin-top: 5px;
+    width: 100%;
+    text-align: center;
+}
+.competitor {
+    display: inline-block;
+    width: 20%;
+    height: 550px;
+    position: relative;
+}
+.team-name {
+    position: relative;
+    display: block;
+    border-bottom: 1px solid black;
+    font-size: .9em;
+}
+.bracket {
+    position: relative;
+    margin-top: 20px;
+}
+.bottom-name {
+    top: .3em;
+    border-right: 1px solid black;
+}
+.competitor-name-input {
+    width: 200px;
+}
+.competitor-port {
+    width: 275px;
+}
+.loser {
+    color: #800606;
+}
+.winner {
+    color: #156b05;
+    font-weight: bold;
+}
+.upload {
+    font-size: 18px;
+    padding: 25px;
+    padding-top: 1px;
+
+    div {
+        display: inline-block;
+        margin-right: 30px;
+        vertical-align: bottom;
+    }
+}
+
+/* Standings */
+.standings > .row {
+    margin: 0 10px;
+    padding: 10px 0;
+}
+
+.large-select {
+    height: 49px;
+    font-size: 2.125em;
+    padding-left: 10px;
+    border-radius: 3px;
+    font-weight: 400;
+    line-height: 1.38;
+    color: black;
+    text-transform: none;
+}
+    .large-select.red-select {
+        background-color: @terraCottaRedBackground;
+    }
+
+.large-select-text {
+    font-size: 2.5em;
+    line-height: 1.38;
+    margin-right: 10px;
+}
+
+.full-width-centered {
+    width: 100%;
+    text-align: center;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.blurb-edit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+
+
+.king-info {
+    display: inline-block;
+    float: left;
+}
+
+.king-info-value {
+    display: inline-block;
+    float: right;
+}
+
+.tournament-info {
+    background-color: #DEDEDE;
+    padding-bottom: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+div.tournament-info > *
+{
+    padding: 20px 0 0 0;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.main-pic {
+    max-width:275px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 30%;
+    cursor: pointer;
+}
+
+.secondary-pic {
+    max-width: 150px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 30%;
+    cursor: pointer;
+}
+
+.secondary-competitor {
+
+}
+
+.darken-background {
+    background-color: rgba(150,150,150,.2);
+}
+
+.yellow-font {
+    color:  #F1F253;
+}
+
+.bigger-font {
+    font-size: 1.5em;
+}
+
+.slightly-bigger-font {
+    font-size: 1.25em;
+}
+
+.absolute-right {
+    position: absolute;
+    right: 0;
+}
+
+.absolute-left {
+    position: absolute;
+    left: 0;
+}
+
+.normal-font {
+    font-size: 1em;
+}
+
+.slightly-smaller-font {
+    font-size: .75em;
+}
+
+.smaller-font {
+    font-size: .5em;
+}
+
+.full-height {
+    min-height: 100%;
+}
+.full-height.no-nav {
+    min-height: calc(~"(100% + 50px)");
+    position: relative;
+}
+
+.full-height-minus-header {
+    min-height: 100%;
+    min-height: calc(~"(100% - 50px)");
+}
+
+.no-margin-bottom {
+    margin-bottom: 0;
+}
+
+.no-margin-top {
+    margin-top: 0;
+}
+
+.no-margins {
+    margin: 0 !important;
+}
+
+.align-center {
+    display: block;
+    margin: 0 auto;
+}
+
+.small-margin-top {
+    margin-top: 5px;
+}
+
+.info-scroll {
+    height: 650px;
+    overflow-y: scroll;
+}
+
+.white-background {
+    background: white;
+}
+
+.rounded-corners {
+    border-radius: 8px;
+}
+
+.circle {
+    border-radius: 50%;
+}
+
+.top-right {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.full-width {
+    width: 100%
+}
+
+.bold-font {
+    font-weight: bold;
+}
+
+.top-input {
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 0;
+    line-height: 28px;
+    padding-left: 10px;
+    padding-bottom: 0;
+}
+
+.middle-input {
+    border-radius: 0;
+    margin-bottom: 0;
+    line-height: 28px;
+    padding-left: 10px;
+    padding-bottom: 0;
+}
+
+.bottom-input {
+    border-radius: 0 0 5px 5px;
+    margin-top: 0;
+    padding-top: 0;
+    border-top: 0;
+    line-height: 28px;
+    padding-left: 10px;
+}
+
+.vertical-padding {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.top-margin {
+    margin-top: 10px;
+}
+
+.padded {
+    padding: 10px;
+}
+
+.side-margins {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.margin-left {
+    margin-left: 10px;
+}
+
+.margin-right {
+    margin-right: 10px;
+}
+
+.win-result {
+    color: rgb(0,180, 0);
+    font-weight: bold;
+}
+
+.loss-result {
+    color: rgb(210, 0, 0);
+    font-weight: bold;
+}
+
+.draw-result {
+    color: @drawColor;
+    font-weight: bold;
+}
+
+.expander {
+    font-weight: bold;
+    width: 20px;
+    margin-top: 5px;
+}
+
+.col-height-hack {
+    display: table;
+}
+
+.col-height-hack>[class*="col-"] {
+    display: table-cell;
+    float: none;
+    vertical-align: top;
+}
+
+
+/////////
+// POPUPS
+/////////
+
+.popup {
+    position: absolute;
+    left: 25%;
+    right: 25%;
+    top: 100px;
+    padding: 25px;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: 5px 5px 10px #888;
+    width: 50%;
+    z-index: 3003;
+}
+
+.popup-fade {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background-color: black;
+    -moz-opacity: 0.7;
+    opacity: .70;
+    filter: alpha(opacity=70);
+    z-index: 3002;
+}
+
+///////////////
+// CSS From www
+///////////////
+.brand {
+    font-family: @fontFamily;
+    font-size: 3.5em;
+    color: #EFEFEF !important;
+    margin-top: -3px;
+    display: inline-block; }
+    .brand .brand-symbol {
+        font-family: Raleway, sans-serif;
+        font-size: 1.2em;
+        font-weight: bolder;
+        color: #B3B3A8;
+        padding: 0 10px; }
+    .brand .back {
+        font-family: Raleway, sans-serif;
+        font-size: 0.9em; }
+
+.navbar {
+    text-align: center !important;
+    z-index: 3001; }
+
+.navbar-brand {
+    font-family: @fontFamily;
+    font-size: 2em;
+    color: #EFEFEF !important;
+    margin-top: -3px;
+    padding: 13px; }
+    .navbar-brand .brand-symbol {
+        font-family: Raleway, sans-serif;
+        font-size: 1.3em;
+        font-weight: bolder;
+        color: #B3B3A8;
+        padding: 0 3px; }
+    .navbar-brand .back {
+        font-family: Raleway, sans-serif;
+        font-size: 0.9em;
+        font-padding-right: 15px; }
+
+.navbar a {
+    color: #B3B3A8 !important; }
+
+    .navbar a.active-link {
+        text-decoration: underline;
+        background-color: rgba(1, 1, 1, .1); }
+
+.nav-links {
+    list-style: none;
+    padding-left: 0; }
+    .nav-links li {
+        display: inline-block;
+        padding: 5px 30px;
+        font-size: 20px; }
+
+.navbar {
+    margin-bottom: 0; }
+
+.navbar-red {
+    background-color: #9B0000;
+    color: #fff; }
+
+.navbar-dark {
+    background-color: @darkestBackground;
+    color: #fff; }
+
+.navbar-static-top {
+    position: fixed;
+    width: 100%; }
+
+.page {
+    position: relative;
+    font-size: 17px; }
+
+//////////////////
+// Upload Page CSS
+//////////////////
+#upload-page {
+    .page {
+        background-color: @greyBackground;
+        color: #111; }
+
+    .page:nth-child(odd) {
+        background: @terraCottaRedBackground; }
+        .page:nth-child(odd) a {
+            color: #dddeee
+        }
+        
+    .page:nth-child(even) a {
+        color: @darkerLinkColor;
+    }
+
+    .page:nth-of-type(1) {
+        background: @darkestBackground;
+        color: #fff;
+    }
+        .page:nth-of-type(1) .container:nth-child(even) {
+            padding: 70px 0;
+        }
+
+    .row {
+        padding: 40px 0;
+        min-height: 220px;
+    }
+
+    .ai-img {
+        height: 350px;
+        margin: 0 auto;
+        display: block;
+        border-radius: 15px;
+    }
+
+    .screen > img {
+        width: 100%;
+        border-radius: 5px; }
+
+    .language {
+        font-size: x-large;
+    }
+
+    .larger {
+        font-size: xx-large;
+        margin-bottom: 15px;
+    }
+
+    .screen > img {
+        height: 140px;
+        border-radius: 5px;
+    }
+}
+
+///////////////////////////
+// Getting Started Page CSS
+///////////////////////////
+#getting-started-page {
+    .page {
+        background-color: @greyBackground;
+        color: #111; }
+
+    .page:nth-child(odd) {
+        background: @terraCottaRedBackground; }
+        .page:nth-child(odd) a {
+            color: #dddeee
+        }
+    .page:nth-child(even) a {
+        color: @darkerLinkColor;
+    }
+
+    .page:nth-of-type(1) {
+        background: @darkestBackground;
+        color: #fff; }
+        .page:nth-of-type(1) .container:nth-child(even) {
+            padding: 70px 0; }
+
+    .row {
+        padding: 40px 0;
+        min-height: 220px; }
+
+    .slogan {
+        font-family: Raleway, sans-serif;
+        font-size: 3.8em;
+        line-height: 1.2em;
+        word-spacing: 0.2em;
+        text-align: right; }
+        .slogan .first-line {
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: -10px; }
+        .slogan .aside {
+            font-size: 0.7em;
+            color: #B3B3A8;
+            line-height: 0.7em;
+            word-spacing: 0.1em; }
+
+    .competition {
+        padding-left: 50px; }
+
+    .competition-current {
+        background: #DFDFDF;
+        color: #000;
+        padding: 1px 30px 0;
+        border-radius: 3px;
+        height: 310px;
+        text-align: center;
+        position: relative; }
+        .competition-current h1 {
+            font-size: 62px;
+            margin: 20px 0 0; }
+        .competition-current i {
+            font-size: 20px; }
+        .competition-current .playing {
+            color: #5C5F50; }
+        .competition-current .side {
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            color: #5C5F50; }
+        .competition-current img {
+            position: absolute;
+            bottom: 0;
+            right: 22px; }
+
+    .shot-game {
+        width: 100%;
+        max-height: 400px; }
+
+    .number {
+        background: #9B0000;
+        display: inline-block;
+        text-align: center;
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
+        color: #fff;
+        font-size: 30px;
+        padding-top: 4px;
+        margin: 0 20px 10px 0; }
+
+    .directions {
+        font-size: x-large; }
+
+    .upload-button {
+        text-align: center;
+        border-radius: 5px;
+        padding: 10px 25px;
+        background-color: #0D35F2;
+        color: #ACACAC; }
+        .upload-button .click {
+            font-size: 2.5em;
+            color: #fff; }
+
+    .screen > img {
+        width: 100%;
+        border-radius: 5px; }
+
+    .larger {
+        font-size: xx-large;
+        margin-bottom: 15px; }
+}
+
+//////////////////
+// Login Popup CSS
+//////////////////
+.login-card {
+    padding: 40px;
+    left: calc(~"50% - 350px/2");
+    width: 350px;
+    background-color: #F7F7F7;
+    margin: 0 auto 10px;
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    position: absolute;
+    z-index: 3002;
+}
+
+.login-card h1 {
+  font-weight: 100;
+     text-align: center;
+     font-size: 2.3em;
+}
+
+.login-card p {
+    margin-left: -25px;
+    margin-right: -25px;
+    text-align: center;
+}
+
+.login-card input[type=button] {
+     width: 100%;
+     display: block;
+     margin-bottom: 10px;
+     position: relative;
+}
+
+.login-card input[type=button]:disabled {
+    background-color: @disabledButtonColor;
+}
+
+.login-card input[type=text], input[type=password] {
+     height: 44px;
+     font-size: 16px;
+     width: 100%;
+     margin-bottom: 10px;
+     -webkit-appearance: none;
+     background: #fff;
+     border: 1px solid #d9d9d9;
+     border-top: 1px solid #c0c0c0;
+     /* border-radius: 2px; */
+     padding: 0 8px;
+     box-sizing: border-box;
+     -moz-box-sizing: border-box;
+}
+
+.login-card select {
+     height: 44px;
+     font-size: 16px;
+     width: 100%;
+     margin-bottom: 10px;
+     background: #fff;
+     border: 1px solid #d9d9d9;
+     border-top: 1px solid #c0c0c0;
+     /* border-radius: 2px; */
+     padding: 0 8px;
+     box-sizing: border-box;
+     -moz-box-sizing: border-box;
+}
+
+.login-card input[type=text]:hover, input[type=password]:hover {
+     border: 1px solid #b9b9b9;
+     border-top: 1px solid #a0a0a0;
+     -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+     -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+     box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.login {
+     text-align: center;
+     font-size: 14px;
+     font-family: 'Arial', sans-serif;
+     font-weight: 700;
+     height: 36px;
+     padding: 0 8px;
+    /* border-radius: 3px; */
+    /* -webkit-user-select: none;
+     user-select: none; */
+}
+
+.login-submit {
+     /* border: 1px solid #3079ed; */
+     border: 0px;
+     color: #fff;
+     text-shadow: 0 1px rgba(0,0,0,0.1); 
+     background-color: #4d90fe;
+     /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
+}
+
+.login-submit:hover {
+     /* border: 1px solid #2f5bb7; */
+     border: 0px;
+     text-shadow: 0 1px rgba(0,0,0,0.3);
+     background-color: #357ae8;
+     /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
+}
+
+.login-card a {
+     text-decoration: none;
+     color: #666;
+     font-weight: 400;
+     text-align: center;
+     display: inline-block;
+     opacity: 0.6;
+     transition: opacity ease 0.5s;
+}
+
+.login-card a:hover {
+     opacity: 1;
+}
+
+.login-help {
+     width: 100%;
+     text-align: center;
+     font-size: 12px;
+}

@@ -1,0 +1,94 @@
+<div id="game-page" class="full-height">
+    <div ng-class="{'hidden-screen': playingGame}" class="splash-screen" id="splash-screen">
+        <div class="page">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-2">
+                        <img src="public/images/archer.png" class="hidden-xs align-center" style="height:120px" />
+                    </div>
+                    <div class="col-xs-8">
+                        <h1 class="full-width-centered no-margin-right">Clone Craft</h1>
+                        <h3 class="full-width-centered no-margin-bottom">Code Wars</h3>
+                    </div>
+                    <div class="col-xs-2">
+                        <img src="public/images/archer.png" class="hidden-xs align-center flipped" style="height:120px" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin-left: 0; margin-right: 0">
+            <div class="col-md-6 col-xs-12 left-competitor">
+                <div class="col-lg-1 visible-lg"></div>
+                <div class="step col-lg-8 col-xs-9 larger" style="text-align: left">
+                    <div style="width: 270px; position: absolute; left: 15px">
+                        <h2 class="no-margin-top">Team 1</h2>
+                        <span style="">Team:</span>
+                        <select class="opponent-select text-center absolute-right" style="width: 170px" ng-model="team1.type" ng-init="initializeTeam1()" ng-change="team1Changed()">
+                            <option value="human">Human</option>
+                            <option value="ai">Your Local AI</option>
+                            <option value="submitted" ng-show="isLoggedIn()">Your Submitted AI</option>
+                            <option value="king">Current King AI</option>
+                        </select>
+                        <br />
+                        <span style="">Port:</span>
+                        <input type="number" value="3000" min="1" max="99999" style="width: 170px"
+                                class="opponent-select absolute-right" ng-disabled="team1.type != 'ai'"
+                                ng-model="team1.port" ng-init="team1.port=3000" ng-change="team1Changed()"/>
+                        <br />
+                        <span style="">Name:</span>
+                        <input type="text" style="margin-left: 10px; width: 170px" class="opponent-select absolute-right" ng-model="team1.name" ng-init="team1Changed()"/>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-xs-3">
+                    <img src="public/images/crown.png" style="float: right" ng-show="team1.type == 'king'"/>
+                    <img src="public/images/human.png" style="float: right" ng-show="team1.type == 'human'"/>
+                    <img src="public/images/robot.png" style="float: right" ng-show="team1.type == 'ai'"/>
+                    <img src="public/images/circuitry.png" style="float: right" ng-show="team1.type == 'submitted'"/>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 right-competitor">
+                <div class="col-lg-1 visible-lg"></div>
+                <div class="col-lg-2 col-xs-3">
+                    <img src="public/images/crown.png" ng-show="team2.type == 'king'"/>
+                    <img src="public/images/human.png" ng-show="team2.type == 'human'"/>
+                    <img src="public/images/robot.png" ng-show="team2.type == 'ai'"/>
+                    <img src="public/images/circuitry.png" ng-show="team2.type == 'submitted'"/>
+                </div>
+                <div class="step col-lg-8 col-xs-9 larger" style="text-align: right; position: relative">
+                    <div style="width: 270px; position: absolute; right: 15px">
+                        <h2 class="no-margin-top">Team 2</h2>
+                        <span class="pull-left">Team:</span>
+                        <select class="opponent-select text-center absolute-right" style="width: 170px" ng-model="team2.type" ng-init="team2.type = 'king'" ng-change="team2Changed()">
+                            <option value="human">Human</option>
+                            <option value="ai">Your Local AI</option>
+                            <option value="submitted" ng-show="isLoggedIn()">Your Submitted AI</option>
+                            <option value="king">Current King AI</option>
+                        </select>
+                        <br />
+                        <span class="pull-left">Port:</span>
+                        <input type="number" value="3000" min="1" max="99999" style="width: 170px"
+                                class="opponent-select absolute-right" ng-disabled="team2.type != 'ai'"
+                                ng-model="team2.port" ng-init="team2.port=3001" ng-change="team2Changed()"/>
+                        <br />
+                        <span class="pull-left">Name:</span>
+                        <input type="text" style="margin-left: 10px; width: 170px" class="opponent-select absolute-right" ng-model="team2.name" ng-init="team2Changed()"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="page darkest-background">
+            <div class="container">
+                <div class="row">
+                    <button type="button" class="btn btn-lg btn-primary align-center splash-btn play-btn" ng-click="createGame()"  ng-disabled="(team1.name == '' || team2.name == '')">Play</button>
+                </div>
+            </div>
+        </div>
+        <div class="watch-game">
+            <strong>Want to watch a recorded game?</strong>
+            &nbsp;&nbsp;
+            <input type="file" class="no-margin-top" style="display: inline-block" accept=".clonecraft" onchange="angular.element(this).scope().fileChanged(this)"/>
+            <button type="button" class="btn btn-lg btn-primary splash-btn" ng-click="loadGame()">Watch Game From File</button>
+        </div>
+    </div>
+    <ng:include src="'/public/views/game/body.html'" class="game-body" ng-show="playingGame"></ng:include>
+</div>

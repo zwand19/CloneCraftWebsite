@@ -1,0 +1,152 @@
+<div class="darkest-background full-height">
+    <div class="container grey-background full-height">
+        <div class="row">
+            <div class="standings">
+                <div class="row">
+                    <div class="popup-fade" ng-show="showStatsPopup" ng-click="showStatsPopup = false"></div>
+                    <div class="popup bold-font bigger-font" ng-show="showStatsPopup">
+                        <h1 class="full-width-centered no-margins">{{stats.name}}</h1>
+                        <hr />
+                        <div class="col-xs-4 col-lg-2">
+                            <div class="cell-no-hover">
+                                <img src="public/images/archer.png" class="cell-pad-image dashed-border" title="archers built"/>
+                                <br />
+                                <p class="full-width-centered">{{stats.archersBuilt}}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-lg-2">
+                            <div class="cell-no-hover">
+                                <img src="public/images/seer.png" class="cell-pad-image dashed-border" title="seers built"/>
+                                <br />
+                                <p class="full-width-centered">{{stats.seersBuilt}}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-lg-2">
+                            <div class="cell-no-hover">
+                                <img src="public/images/fox.png" class="cell-pad-image dashed-border" title="foxes built"/>
+                                <br />
+                                <p class="full-width-centered">{{stats.foxesBuilt}}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-lg-2">
+                            <div class="cell-no-hover">
+                                <img src="public/images/warrior.png" class="cell-pad-image dashed-border" title="tanks built"/>
+                                <br />
+                                <p class="full-width-centered">{{stats.tanksBuilt}}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-lg-2">
+                            <div class="cell-no-hover">
+                                <img src="public/images/miner.png" class="cell-pad-image dashed-border" title="miners built"/>
+                                <br />
+                                <p class="full-width-centered">{{stats.minersBuilt}}</p>
+                            </div>
+                        </div>
+                        <div class="col-xs-4 col-lg-2">
+                            <div class="cell-no-hover">
+                                <img src="public/images/minion.png" class="cell-pad-image dashed-border" title="grunts built"/>
+                                <br />
+                                <p class="full-width-centered">{{stats.gruntsBuilt}}</p>
+                            </div>
+                        </div>
+                        <p class="full-width-centered">Gold Mined: {{stats.goldMined}}</p>
+                        <p class="full-width-centered">Greater Minions Built: {{stats.greaterMinionsBuilt}}</p>
+                        <p class="full-width-centered">Lesser Minions Built: {{stats.lesserMinionsBuilt}}</p>
+                        <p class="full-width-centered">Minions Killed: {{stats.minionsKilled}}</p>
+                        <p class="full-width-centered no-margin-bottom">Game Record: {{stats.wins}}&nbsp;-&nbsp;{{stats.losses}}</p>
+                    </div>
+                    <div class="row hidden-md hidden-lg">
+                        <div class="full-width-centered white-background rounded-corners vertical-padding" style="min-height: 30px; position: relative">
+                            <p class="bigger-font" ng-show="competitor.blurb && !edittingBlurb">"{{competitor.blurb}}"</p>
+                            <p class="bigger-font" ng-show="!competitor.blurb && !edittingBlurb">{{competitor.name}} has nothing to say...</p>
+                            <a class="blurb-edit" ng-show="showEditBlurb()" ng-click="editBlurb()">Edit</a>
+                            <div class="container" ng-show="edittingBlurb">
+                                <div class="row">
+                                    <input class="bigger-font col-md-9 col-xs-12" type="text" ng-model="edittedBlurb" id="blurb-input" />
+                                    <div class="col-md-1 hidden-sm hidden-xs"></div>
+                                    <div class="col-xs-3 hidden-md hidden-lg"></div>
+                                    <div class="hand-cursor btn btn-primary col-md-2 col-xs-6" ng-click="updateProfile()">Okay</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <img src="../public/images/tail.png" style="margin-left: 50%" />
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="row">
+                            <img class="full-width-centered main-pic"
+                                ng-src="{{competitor.gravatar}}"
+                                alt="{{competitor.name}}"
+                                title="{{competitor.name}}" />
+                            <h1 class="full-width-centered">{{competitor.name}}</h1>
+                            <p class="full-width-centered no-margins">Image controlled by <a href="http://www.gravatar.com" target="_blank">Gravatar</a></p>
+                        </div>
+                        <div class="row">
+                            <div class="darken-background side-margins">
+                                <div class="row">
+                                    <h3 class="full-width-centered">Vital Statistics</h3>
+                                </div>
+                                <div class="row">
+                                    <p class="full-width-centered">Registered: {{competitor.registeredOn}}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="full-width-centered">Tourneys: {{competitor.tournaments.length}}</p>
+                                </div>
+                                <div class="row">
+                                    <p class="full-width-centered">Language: {{competitor.language}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <div class="row hidden-xs hidden-sm">
+                            <div class="full-width-centered white-background rounded-corners vertical-padding" style="min-height: 30px; position: relative">
+                                <p class="bigger-font" ng-show="competitor.blurb && !edittingBlurb">"{{competitor.blurb}}"</p>
+                                <p class="bigger-font" ng-show="!competitor.blurb && !edittingBlurb">{{competitor.name}} has nothing to say...</p>
+                                <a class="blurb-edit" ng-show="showEditBlurb()" ng-click="editBlurb()">Edit</a>
+                                <div class="container" ng-show="edittingBlurb">
+                                    <div class="row">
+                                        <input class="bigger-font col-md-9 col-xs-12" type="text" ng-model="edittedBlurb" id="blurb-input" />
+                                        <div class="col-md-1 hidden-sm hidden-xs"></div>
+                                        <div class="col-xs-3 hidden-md hidden-lg"></div>
+                                        <div class="hand-cursor btn btn-primary col-md-2 col-xs-6" ng-click="updateProfile()">Okay</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <img src="../public/images/tail.png" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="darken-background rounded-corners">
+                                <h3 class="full-width bold-font padded no-margin-bottom">Clone Craft</h3>
+                                <div class="container">
+                                    <div ng-repeat="tournament in competitor.tournaments" class="bigger-font" style="position: relative">
+                                        <p ng-hide="tournament.opened" class="expander" ng-click="tourneyButtonClicked(tournament)">+</p>
+                                        <p ng-show="tournament.opened" class="expander" ng-click="tourneyButtonClicked(tournament)">-</p>
+                                        <p class="margin-left" ng-click="tourneyButtonClicked(tournament)" style="width: 180px">{{tournament.name}}</p>
+                                        <p style="width: 400px" class="">Finished {{tournament.position}} out of {{tournament.numCompetitors}} competitors</p>
+                                        <div class="btn btn-default top-right" ng-click="showStats(tournament)">Show Stats</div>
+                                        <div ng-show="tournament.opened" class="container slightly-smaller-font" ng-repeat="match in tournament.matches">
+                                            <p ng-hide="match.opened" class="expander" ng-click="match.opened = true">+</p>
+                                            <p ng-show="match.opened" class="expander" ng-click="match.opened = false">-</p>
+                                            <p class="margin-left">vs. <a ng-href="#/CloneCraft/competitor/{{match.opponent}}">{{match.opponent}}</a></p>
+                                            <p style="width: 80px" class="pull-right" ng-class="getResultClass(match.result)">{{match.result}}</p>
+                                            <div ng-show="match.opened" class="container slightly-smaller-font" ng-repeat="game in match.games">
+                                                <p class="">game {{$index + 1}}</p>
+                                                <p class="margin-left" ng-class="getResultClass(game.result)">{{game.result}}</p>
+                                                <a ng-href="/download?path={{game.path}}" class="pull-right btn btn-primary slightly-smaller-font" download="{{competitor.name}} vs. {{match.opponent}} game {{$index + 1}}.zip">download</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p ng-if="competitor.tournaments.length == 0" class="full-width-centered">This competitor has not participated in any tournaments yet</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

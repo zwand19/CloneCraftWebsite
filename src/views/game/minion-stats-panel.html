@@ -1,0 +1,27 @@
+﻿<div id="minion-stats-panel" style="visibility: hidden" class="panel-container panel-side" ng-style="{'right': panelOpen ? '350px' : '0px'}">
+    <div class="panel-box">
+        <div class="panel-box-number">{{selectedObject.d}}</div>
+        <img class="panel-box-img" src="../public/images/damage-icon.png" alt="damage icon" title="minion damage"/>
+    </div>
+    <div class="panel-box">
+        <div class="panel-box-number">{{selectedObject.r}}</div>
+        <img class="panel-box-img" src="../public/images/range-icon.png" alt="range icon" title="minion range"/>
+    </div>
+    <div class="panel-box">
+        <div class="panel-box-number">{{selectedObject.hp}}</div>
+        <img class="panel-box-img" src="../public/images/health-icon.png" alt="health icon" title="minion health"/>
+    </div>
+    <div class="panel-box">
+        <div class="panel-box-number">{{selectedObject.mi}}</div>
+        <img class="panel-box-img" src="../public/images/mining-icon.png" alt="mining icon" title="minion mining"/>
+    </div>
+    <div class="panel-box">
+        <div class="panel-box-number" ng-hide="selectedEnemy">&nbsp;{{selectedObject.sp}} ({{selectedObject.mr}})</div>
+        <div class="panel-box-number" ng-show="selectedEnemy">{{selectedObject.sp}}</div>
+        <img class="panel-box-img" src="../public/images/speed-icon.png" alt="speed icon" title="minion speed"/>
+    </div>
+    <div class="panel-box">
+        <div class="panel-box-number">{{selectedObject.vi}}</div>
+        <img class="panel-box-img" src="../public/images/vision-icon.png" alt="vision icon" title="minion vision"/>
+    </div>
+</div>

@@ -1,0 +1,101 @@
+<div class="darkest-background full-height">
+    <div class="container" ng-show="tournaments.length == 0">
+        <div class="row">
+            <div class="col-xs-12 grey-background">
+                <h2 class="full-width-centered">No tournaments have been run yet. Tournaments are run every Sunday at 10pm</h2>
+                <br />
+            </div>
+        </div>
+    </div>
+    <div class="container" ng-show="tournaments.length > 0">
+        <div class="row">
+            <div class="col-xs-12 grey-background">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <p class="large-select-text">Tournament:</p>
+                        <select ng-model="selectedTournament"
+                            ng-change="tournamentSelected()"
+                            ng-options="tournament.name for tournament in tournaments" class="large-select red-select">
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="row darken-background" ng-if="selectedTournament.scoreboard.length">
+                            <div class="col-md-6">
+                                <h2 class="full-width-centered">Current King of the Hill</h2>
+                                <img class="full-width-centered main-pic"
+                                    ng-src="{{selectedTournament.scoreboard[0].gravatar}}"
+                                    alt="{{selectedTournament.scoreboard[0].name}}"
+                                    title="{{selectedTournament.scoreboard[0].name}}"
+                                    ng-click="competitorClicked(selectedTournament.scoreboard[0].name)"/>
+                                <h1 class="full-width-centered">{{selectedTournament.scoreboard[0].name}}</h1>
+                                <p class="full-width-centered yellow-font bigger-font no-margin-bottom">{{selectedTournament.scoreboard[0].wins}}&nbsp;-&nbsp;{{selectedTournament.scoreboard[0].losses}}</p>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="container">
+                                    <div style="margin-top: 75px" class="hidden-xs hidden-sm"></div>
+                                    <div class="row">
+                                        <h3 class="king-info">Reign:</h3>
+                                        <h3 class="king-info-value">{{selectedTournament.scoreboard[0].reign}}</h3>
+                                    </div>
+                                    <div class="row">
+                                        <h3 class="king-info">Uploads:</h3>
+                                        <h3 class="king-info-value">{{selectedTournament.scoreboard[0].uploads}}</h3>
+                                    </div>
+                                    <div class="row">
+                                        <h3 class="king-info">Language:</h3>
+                                        <h3 class="king-info-value">{{selectedTournament.scoreboard[0].language}}</h3>
+                                    </div>
+                                    <div class="row">
+                                        <h3 class="king-info">Last Upload:</h3>
+                                        <h3 class="king-info-value">{{selectedTournament.scoreboard[0].lastUploaded}}</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div ng-repeat="competitor in getSecondaryWinners()">
+                                    <div class="col-xs-3 secondary-competitor">
+                                        <p class="full-width-centered bigger-font no-margin-bottom">{{competitor.place}}</p>
+                                        <img class="full-width-centered secondary-pic"
+                                            ng-src="{{competitor.gravatar}}"
+                                            alt="{{competitor.name}}"
+                                            title="{{competitor.name}}"
+                                            ng-click="competitorClicked(competitor.name)" />
+                                        <h3 class="full-width-centered no-margin-bottom small-margin-top">{{competitor.name}}</h3>
+                                        <p class="full-width-centered yellow-font">{{competitor.wins}}&nbsp;-&nbsp;{{competitor.losses}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 info-scroll hidden-xs hidden-sm">
+                        <div class="tournament-info darken-background" ng-repeat="info in infoBubbles">
+                            <h1>{{info.name}}</h1>
+                            <span ng-if="info.value != null">
+                                <h3>{{info.value}} this week</h3>
+                                <h3>{{info.total}} to date</h3>
+                            </span>
+                            <div ng-if="info.value == null">
+                                <h3>{{info.total}}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row darken-background" style="padding-top: 15px" ng-show="getFieldCompetitors().length">
+            <div ng-repeat="competitor in getFieldCompetitors()">
+                <div class="col-xs-1 secondary-competitor">
+                    <img class="full-width-centered secondary-pic"
+                        ng-src="{{competitor.gravatar}}"
+                        alt="{{competitor.name}}"
+                        title="{{competitor.name}}"
+                        ng-click="competitorClicked(competitor.name)" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿<div class="panel-container admin-panel">
+    <div class="panel-box" ng-click="endTurn()" ng-show="!watchingGame && (team1.type == 'human' || team2.type == 'human')" ng-disabled="currentTeam.type != 'human' || winner != null">
+        <div class="panel-box-text">End Turn</div>
+        <img class="panel-box-img" src="../public/images/end-turn-icon.png" alt="end turn icon" title="end your turn"/>
+    </div>
+    <div class="panel-box" ng-click="continue()" ng-show="!watchingGame && (team1.type != 'human' && team2.type != 'human')"
+        ng-disabled="currentTeam.type == 'human' || winner != null || runningAIs">
+        <div class="panel-box-text">Continue</div>
+        <img class="panel-box-img" src="../public/images/continue-icon.png" alt="continue icon" title="have the AI complete their next turn"/>
+    </div>
+    <div class="panel-box" ng-click="continueWatching()" ng-show="watchingGame" ng-disabled="runningGame || winner != null">
+        <div class="panel-box-text">Continue</div>
+        <img class="panel-box-img" src="../public/images/continue-icon.png" alt="continue icon" title="step to the next turn in the game"/>
+    </div>
+    <div class="panel-box" ng-click="runGame()" ng-show="watchingGame" ng-disabled="runningGame || winner != null">
+        <div class="panel-box-text">Watch</div>
+        <img class="panel-box-img" src="../public/images/stopwatch.png" alt="run game icon" title="watch the game on a timer"/>
+    </div>
+    <div class="panel-box" ng-click="watchAIs()" ng-show="!watchingGame && (team1.type != 'human' && team2.type != 'human')" ng-disabled="runningAIs || winner != null">
+        <div class="panel-box-text">Watch</div>
+        <img class="panel-box-img" src="../public/images/stopwatch.png" alt="run game icon" title="watch the ais play on a timer"/>
+    </div>
+    <div class="panel-box" ng-click="stopGame()" ng-show="watchingGame || (team1.type != 'human' && team2.type != 'human')" ng-disabled="!runningGame && !runningAIs">
+        <div class="panel-box-text">Stop</div>
+        <img class="panel-box-img" src="../public/images/end-turn-icon.png" alt="stop running icon" title="stop the game from running on a timer"/>
+    </div>
+    <div class="panel-box" ng-click="openSettings()">
+        <div class="panel-box-text">Settings</div>
+        <img class="panel-box-img" src="../public/images/settings-icon.png" alt="settings icon" title="open settings panel"/>
+    </div>
+    <div class="panel-box" ng-click="quit()">
+        <div class="panel-box-text">Leave Game</div>
+        <img class="panel-box-img" src="../public/images/quit-icon.png" alt="leave icon" title="return to the create game menu"/>
+    </div>
+</div>
+<img src="/public/images/compass-icon.png" alt="compass" class="compass"/>

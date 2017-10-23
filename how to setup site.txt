@@ -1,0 +1,18 @@
+Steps needed to set up the CloneCraft Site on your machine
+
+Install git, node, mongodb
+Need IIS
+
+1. Run command prompt as Admin and navigate to directory
+2. Pull Code with git
+3. navigate to /Website
+4. 'npm install grunt-cli -g'
+5. 'npm install bower -g'
+6. 'npm install supervisor -g'
+7. 'npm install'
+8. Copy /config-sample.json to server/config.json
+9. Open server/config.json and make sure the 'Server Directory' value is the directory that your site is in e.g. 'C:'
+10. Have a mongo DB running under the connection string specified in config.json
+11. Create an IIS site titled 'CloneCraft Tourney'
+12. 'grunt server' will spin up the server
+13. navigate to http://localhost:6108 in your browser and smoke test

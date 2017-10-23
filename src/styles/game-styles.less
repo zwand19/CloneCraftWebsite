@@ -1,0 +1,474 @@
+@import "pure.css";
+@import "email.css";
+@import "bootstrap.less";
+
+/* Variables */
+
+@listWidth: 275px;
+@navWidth: 160px;
+
+@panelBoxSize: 100px;
+@panelWidth: 350px;
+
+@headerHeight: 50px;
+
+/* Overrides */
+#game-page {
+    background-color: @darkestBackground;
+
+    .splash-screen {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 3000;
+    }
+
+    .hidden-screen {
+        top: -130%;
+    }
+
+    .side-page {
+        width: 50%;
+    }
+
+    .page {
+        color: #fff;
+    }
+
+    .left-competitor {
+        background: @greyBackground;
+        color: #111;
+        padding: 20px;
+    }
+
+    .right-competitor {
+        background: @terraCottaRedBackground;
+        color: #111;
+        padding: 20px;
+    }
+
+    .page .row {
+        padding: 40px 0;
+        min-height: 220px;
+    }
+
+    img {
+        height: 150px;
+        border-radius: 10px;
+    }
+
+    .navbar-brand {
+        font-size: 1.3em;
+    }
+
+    .game-body {
+        display: block;
+        background: #333;
+        height: 100%;
+    }
+
+    .game-board {
+        display: block;
+        margin-left: @panelBoxSize;
+    }
+
+    .game-panel {
+        position: fixed;
+        height: 100%;
+        top: @headerHeight;
+    }
+
+    .play-btn {
+        font-size: 40px;
+        width: 250px;
+    }
+
+    /* General */
+
+    a {
+        cursor: pointer;
+    }
+
+    /* Sectional */
+
+    p {
+        line-height: 28px;
+    }
+
+    code {
+        border: 1px solid darkgray;
+        background-color: rgb(222, 236, 241) !important;
+    }
+
+    .watch-game {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        padding: 20px 0;
+        background: #B0B0B0;
+
+        strong {
+            color: #000;
+            font-size: 24px;
+            position: relative;
+            top: 4px;
+        }
+        input {
+            position: relative;
+            top: 1px;
+        }
+    }
+
+    /* Behavioral */
+
+    .white-background {
+        background-color: white;
+    }
+
+    .header-info {
+        margin: 0;
+        padding: 10px 7px;
+    }
+
+    .header-btn {
+        cursor: pointer;
+        display: inline-block;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 3px;
+    }
+
+    .no-margin-top {
+        margin-top: 0 !important
+    }
+
+    input.pull-right {
+        width: 25%;
+    }
+
+    .default-cursor {
+        cursor: default;
+    }
+
+    .selected-doc-menu {
+        background-color: rgb(55, 60, 90);
+    }
+
+    /* BOARD */
+    .board {
+        background-image: url('../images/cartoon-grass.jpg');
+        background-repeat: repeat;
+        background-color: #09561d;
+        position: absolute;
+    }
+
+    .board-wrapper {
+        background-color: #333;
+        height: 100%;
+        overflow: hidden;
+        width: 100%
+    }
+
+    .board-object {
+        -moz-background-size: 100% 100%;
+        -o-background-size: 100% 100%;
+        -webkit-background-size: 100% 100%;
+        background-size: 100% 100%;
+        position: absolute;
+        -moz-transition: left .5s, top .5s;
+        -o-transition: left .5s, top .5s;
+        -webkit-transition: left .5s, top .5s;
+        transition: left .5s, top .5s;
+        cursor: pointer;
+    }
+        .board-object.team1 {
+            background-color: rgba(0, 0, 100, .65);
+        }
+        .board-object.team2 {
+            background-color: rgba(255, 0, 234, 0.65);
+        }
+        .board-object.selected {
+            background-color: rgba(245, 255, 0, .55);
+        }
+
+    .base {
+        background-image: url('../images/fortress.png');
+    }
+
+
+    .cell {
+        display: inline-block;
+        position: static;
+        margin: 0;
+        cursor: default;
+    }
+        .cell.fog {
+            background-color: rgba(40, 40, 40, 0.75);
+        }
+        .cell.red {
+            background-color: rgba(113, 8, 8, 0.75);
+        }
+        .cell.cyan {
+            background-color: rgba(0, 255, 232, 0.65);
+        }
+        .cell.gold {
+            background-color: rgba(143, 144, 11, 0.75);
+        }
+
+    .minion {
+        background-image: url('../images/minion.png');
+        background-color: rgba(0, 0, 100, .3);
+    }
+        .minion.speed {
+            background-image: url('../images/fox.png');
+        }
+        .minion.attack {
+            background-image: url('../images/archer.png');
+        }
+        .minion.tank {
+            background-image: url('../images/Warrior.png');
+        }
+        .minion.vision {
+            background-image: url('../images/seer.png');
+        }
+        .minion.mining {
+            background-image: url('../images/miner.png');
+        }
+
+    .resource {
+        background-image: url('../images/gold.png');
+    }
+
+    .compass {
+        width: @panelBoxSize;
+        height: @panelBoxSize;
+        left: 0;
+        bottom: 0;
+        position: fixed;
+    }
+
+    .base:hover > .health {
+        display: inline-block;
+    }
+
+    .minion:hover > .health {
+        display: inline-block;
+    }
+
+    .health {
+        position: relative;
+        color: red;
+        display: none;
+        width: 100%;
+        text-align: center;
+        z-index: 100;
+    }
+
+    @-webkit-keyframes attack-flash {
+        0% {
+            opacity: 1;
+        }
+
+        50% {
+            background-color: #c00;
+        }
+
+        100% {
+            background-color: #800;
+        }
+    }
+
+    @-moz-keyframes attack-flash {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            background-color: #c00;
+        }
+        100% {
+            background-color: #800;
+        }
+    }
+
+    @keyframes attack-flash {
+        0% {
+            opacity: 1;
+        }
+        50% {
+            background-color: #c00;
+        }
+        100% {
+            background-color: #800;
+        }
+    }
+
+    .attack-flash {
+        -webkit-animation-name: attack-flash;
+        -moz-animation-name: attack-flash;
+        -o-animation-name: attack-flash;
+        animation-name: attack-flash;
+        -webkit-animation-duration: .5s;
+        -moz-animation-duration: .5s;
+        -o-animation-duration: .5s;
+        animation-duration: .5s;
+        -webkit-animation-iteration-count: 1;
+        -moz-animation-iteration-count: 1;
+        -o-animation-iteration-count: 1;
+        animation-iteration-count: 1;
+        -webkit-animation-timing-function: ease-in-out;
+        -moz-animation-timing-function: ease-in-out;
+        -o-animation-timing-function: ease-in-out;
+        animation-timing-function: ease-in-out;
+    }
+    /* END BOARD */
+
+    /* PANEL */
+    .panel {
+        opacity: .9;
+        background-color: rgba(255, 255, 255, .65);
+        border: 1px solid black;
+        border-radius: 0 0 0 15px;
+        height: 650px;
+        position: fixed;
+        right: 0px;
+        top: @headerHeight;
+        width: @panelWidth;
+        -moz-transition: all .5s;
+        -o-transition: all .5s;
+        -webkit-transition: all .5s;
+        transition: all .5s;
+        -moz-transition-property: right;
+        -o-transition-property: right;
+        -webkit-transition-property: right;
+        transition-property: right;
+    }
+
+        .panel.panel-background {
+            background-color: #eee;
+            background-image: url('../images/white-leather.jpg');
+            opacity: .6;
+            -moz-background-size: auto 100%;
+            -o-background-size: auto 100%;
+            -webkit-background-size: auto 100%;
+            background-size: auto 100%;
+        }
+
+    .panel-btn {
+        height: 40px;
+        font-size: 1.2em;
+        font-weight: bold;
+        opacity: 1;
+        width: 100%;
+        margin: 10px 0 5px 0;
+    }
+
+    .panel-container {    
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .panel-container.panel-side {
+        position: fixed;
+        height: 400px;
+        top: 51px;
+        margin: 0;
+        padding: 0;
+        right: @panelWidth;
+        width: @panelBoxSize;
+        -moz-transition: all .5s;
+        -o-transition: all .5s;
+        -webkit-transition: all .5s;
+        transition: all .5s;
+        -moz-transition-property: right;
+        -o-transition-property: right;
+        -webkit-transition-property: right;
+        transition-property: right;
+    }
+
+    .panel-container.admin-panel {
+        display: inline-block;
+        width: 100px;
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #333;
+    }
+
+    .panel-box[disabled='disabled'] {  
+        background-color: #666;
+        pointer-events: none;
+    }
+
+    .panel-box {
+        border: 1px solid black;
+        border-radius: 8px 0 0 8px;
+        background-color: lightgray;
+        display: inline-block;
+        height: @panelBoxSize;
+        width: @panelBoxSize;
+        cursor: pointer;
+    }
+    .admin-panel .panel-box {
+        border-radius: 0 8px 8px 0;
+    }
+        .admin-panel>.panel-box:hover {
+            background-color: #c3c3c3
+        }
+        .admin-panel>.panel-box:active {
+            top: 1px;
+            position: relative;
+            background-color: #a3a3a3;
+            box-shadow:1px 1px 2px rgba(0,0,0,0.4) inset;
+        }
+    .panel-box-number {
+        font-size: 2em;
+        text-align: center;
+    }
+    .panel-box-text {
+        margin-top: .25em;
+        font-size: 1em;
+        text-align: center;
+    }
+    .panel-box-img {
+        width: @panelBoxSize / 2;
+        height: @panelBoxSize / 2;
+        margin-left: @panelBoxSize / 4;
+    }
+    .admin-panel>.panel-box>.panel-box-img {
+        margin-top: .4em;
+    }
+    .base-panel-buffer {
+        height: 13px;
+    }
+    /*END PANEL*/
+
+    /* SETTINGS PANEL */
+    .half-column {
+        display: inline-block;
+        position: relative;
+        padding: 0;
+        margin: 0;
+        text-align: right;
+    }
+        .half-column.left-column {
+            width: 220px;
+        }
+        .half-column.right-column {
+            width: 30px;
+            left: 30px;
+        }
+
+    .settings-row {
+        height: 30px;
+        line-height: 30px;
+    }
+
+    .grid-size-slider {
+        padding: 0;
+        height: 10px;
+        margin-top: 12px;
+    }
+    /* END SETTINGS */
+}

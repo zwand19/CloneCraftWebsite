@@ -1,0 +1,22 @@
+<div class="darkest-background full-height">
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron upload">
+                <h2>Confirmation Page</h2>
+                <div ng-show="confirmed == 'confirmed'">
+                    <p>Your warrior friend is now confirmed!</p>
+                    <br />
+                    <p>What have you done...</p>
+                </div>
+                <div ng-show="confirmed == 'denied'">
+                    <p>Uh oh! There was an error processing your confirmation:</p>
+                    <br />
+                    <p style="color: red">{{error}}</p>
+                </div>
+                <div ng-show="confirmed == 'waiting'">
+                    <p>Processing your confirmation request...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

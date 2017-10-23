@@ -1,0 +1,85 @@
+<span ng-controller="headerController">
+    <!-- Normal Header -->
+    <div class="navbar navbar-red navbar-static-top" ng-class="{'navbar-red': navbarColor == 'red', 'navbar-dark': navbarColor == 'dark'}" style="border-bottom: 0" ng-show="header == 'normal'">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" ng-click="expandedNavbar = !expandedNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="/#/" class="navbar-brand" ng-show="backTo == 'codeWars'">
+                    <span class="brand-symbol">&lt; </span>
+                    <span class="back">Back to</span>
+                    code wars
+                </a>
+                <a href="/#/CloneCraft" class="navbar-brand" ng-show="backTo == 'cloneCraft'">
+                    <span class="brand-symbol">&lt; </span>
+                    <span class="back">Back to</span>
+                    clone craft
+                </a>
+            </div>
+            <div class="navbar-collapse collapse" ng-style="{'display': expandedStyle()}">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a ng-class="{'active-link': currentPage == 'cloneCraft'}" ng-click="overviewClicked()">Overview</a></li>
+                    <li ng-show="loggedIn"><a ng-class="{'active-link': currentPage == 'upload'}" ng-click="uploadClicked()">Upload</a></li>
+                    <li><a ng-class="{'active-link': currentPage == 'docs'}" ng-click="docsClicked()">Docs</a></li>
+                    <li><a ng-class="{'active-link': currentPage == 'standings'}" ng-click="standingsClicked()">Leaderboard</a></li>
+                    <li><a ng-class="{'active-link': currentPage == 'game'}" ng-click="playClicked()">Play Now</a></li>
+                    <li ng-show="!loggedIn"><a ng-click="showLogin()">Login/Register</a></li>
+                    <li ng-show="loggedIn"><a ng-click="profileClicked()">Profile</a></li>
+                    <li ng-show="loggedIn"><a ng-click="logout()">Log Out</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Big Header -->
+    <div class="navbar navbar-dark navbar-static-top" ng-show="header == 'big'">
+        <div class="container">
+            <span class="brand">
+                <span class="brand-symbol">&lt;</span><span>code wars</span><span class="brand-symbol">&gt;</span>
+            </span>
+            <br />
+            <ul class="nav-links">
+                <li><a href="#/">Home</a></li>
+                <li><a href="#/about">About</a></li>
+                <li><a href="#/CloneCraft">Competitions</a></li>
+                <li><a href="#/warriors">Warriors</a></li>
+                <li ng-show="!loggedIn"><a ng-click="showLoginPopup = true">Login/Register</a></li>
+                <li ng-show="loggedIn"><a ng-click="logout()">Log Out</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Div to push down content -->
+    <div class="navbar-fill"></div>
+
+    <!-- Login Popup -->
+    <div class="popup-fade" ng-show="showLoginPopup" ng-click="hideLoginPopup()"></div>
+    <div class="login-card" ng-show="showLoginPopup">
+        <h1 ng-show="formType == 'login'">Log-in</h1>
+        <h1 ng-show="formType == 'register'">Register</h1>
+        <br>
+        <form ng-show="formType == 'login'">
+            <input id="loginCredential" type="text" placeholder="Username or email" ng-model="loginCredential" />
+            <input type="password" placeholder="Password" ng-model="loginPassword" ng-keyup="loginIfEnter($event)"/>
+            <input type="button" value="Submit" class="login login-submit" ng-click="login()" ng-disabled="waitingOnServer" />
+        </form>
+        <form ng-show="formType == 'register'">
+            <input id="registerEmail" type="text" ng-model="registerEmail" placeholder="Email"/>
+            <input type="text" ng-model="registerUsername" placeholder="Username"/>
+            <input type="password" ng-model="registerPassword" placeholder="Password"/>
+            <input type="password" ng-model="registerPasswordConfirmation" placeholder="Confirm Password" ng-keyup="registerIfEnter($event)"/>
+            <select ng-model="registerLanguage" ng-init="registerLanguage = 'C-Sharp'">
+                <option selected value="C-Sharp">C#</option>
+                <option value="Node">JavaScript</option>
+            </select>
+            <input type="button" value="Submit" class="login login-submit" ng-click="register()" ng-disabled="waitingOnServer">
+        </form>
+
+        <div class="login-help" ng-show="formType == 'login'">
+            <a ng-click="showRegister()">Register</a> • <a>Forgot Password</a>
+        </div>
+    </div>
+</span>

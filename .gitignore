@@ -1,0 +1,8 @@
+/tmp
+/node_modules
+/logs
+/bower_components
+/.temp
+/server/.env
+/dist
+config.json

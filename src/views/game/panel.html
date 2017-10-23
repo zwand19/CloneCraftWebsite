@@ -1,0 +1,8 @@
+﻿<div ng-controller="panelController">
+    <div class="panel panel-background" style="right: -350px" ng-style="{'right': panelOpen ? '0' : '-350px'}"></div>
+    <div class="panel" style="right: -350px" ng-style="{'right': panelOpen ? '0' : '-350px'}">
+        <div ng-include="'/public/views/game/minion-stats-panel.html'"></div>
+        <div ng-include="'/public/views/game/main-panel.html'"></div>
+    </div>
+	<div ng-include="'/public/views/game/admin-panel.html'" class="game-panel"></div>
+</div>

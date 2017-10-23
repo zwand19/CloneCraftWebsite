@@ -1,0 +1,5 @@
+Steps needed to reset the CloneCraft Site
+
+1. Wipe database
+2. Look in server.coffee for the "ensureDirectories" call, delete all of those directories (they will be created next time server is run)
+3. Delete all of the applications under CloneCraft Tourney in IIS

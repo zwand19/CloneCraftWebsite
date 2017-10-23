@@ -1,0 +1,82 @@
+{
+  "name": "clone-craft-tournament-runner",
+  "description": "CloneCraft game engine for Code Wars IV",
+  "version": "1.0.0",
+  "author": {
+    "name": "Zack Wand",
+    "email": "z.wand19@gmail.com",
+    "url": "http://www.twitter.com/zacharywand"
+  },
+  "contributors": [
+    {
+      "name": "Mike Reyes",
+      "email": "mike.reyes@geneca.com",
+      "url": "http://www.geneca.com/mike.reyes"
+    },
+    {
+      "name": "Jack Morrissey",
+      "email": "jack.morrissey@geneca.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://"
+  },
+  "private": true,
+  "dependencies": {
+    "adm-zip": "~0.4.4",
+    "body-parser": "^1.14.1",
+    "bower": "^1.6.5",
+    "child-process-promise": "^0.2.0-SNAPSHOT.1389671754086",
+    "coffee-script": "^1.6.3",
+    "coffeelint": "^1.13.0",
+    "cross-spawn": "^0.1.7",
+    "duel": "^0.5.2",
+    "errorhandler": "^1.4.2",
+    "express": "^4.13.3",
+    "fs-extra": "^0.9.1",
+    "fs-then": "~0.2.0",
+    "gravatar": "^1.0.6",
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13",
+    "grunt-coffeelint": "0.0.13",
+    "grunt-contrib-clean": "^0.5.0",
+    "grunt-contrib-coffee": "0.7.0",
+    "grunt-contrib-copy": "0.4.1",
+    "grunt-contrib-less": "0.7.0",
+    "grunt-contrib-requirejs": "0.4.4",
+    "grunt-contrib-uglify": "0.2.7",
+    "grunt-contrib-watch": "0.5.3",
+    "grunt-file-append": "0.0.4",
+    "grunt-hustler": "^2.0.0",
+    "grunt-jasmine-node": "0.2.1",
+    "grunt-markdown": "0.5.0",
+    "grunt-open": "~0.2.2",
+    "mkdirp": "^0.3.5",
+    "mongodb": "^2.0.46",
+    "morgan": "^1.6.1",
+    "multer": "^1.1.0",
+    "mv": "^2.0.3",
+    "ncp": "~0.5.1",
+    "node-env-file": "^0.1.7",
+    "node-schedule": "^0.1.16",
+    "node-uuid": "~1.4.1",
+    "nodemailer": "^0.6.5",
+    "q": "^1.4.1",
+    "request": "^2.27.0",
+    "serve-static": "^1.10.0",
+    "socket.io": "^0.9.14",
+    "supervisor": "^0.6.0"
+  },
+  "engines": {
+    "node": "4.2.1",
+    "npm": "3.3.9"
+  },
+  "scripts": {
+    "postinstall": "bower install",
+    "start": "node ./start.js"
+  },
+  "devDependencies": {
+    "grunt-azure-deploy": "^1.0.2"
+  }
+}

@@ -1,0 +1,101 @@
+﻿<div class="board-wrapper" ng-style="{'height': status.board.h * settings.cellSize + 'px', 'width': (status.board.w * settings.cellSize + 450) + 'px'}" ng-show="showBoard">
+    <div class="board" ng-style="{'height': status.board.h * settings.cellSize + 'px', 'width': status.board.w * settings.cellSize + 'px', '-moz-background-size': settings.cellSize + 'px ' + settings.cellSize + 'px', '-o-background-size': settings.cellSize + 'px ' + settings.cellSize + 'px', '-webkit-background-size': settings.cellSize + 'px ' + settings.cellSize + 'px', 'background-size': settings.cellSize + 'px ' + settings.cellSize + 'px'}">
+        <div class="board-object resource" ng-repeat="resource in status.resources" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * resource.x + 'px', 'top': settings.cellSize * resource.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == resource.id}"
+            ng-click="selectObject(resource.id, $event)">
+        </div>
+        <div ng-if="team1.base !== null">
+            <div class="board-object base team1" 
+                ng-style="{'height': settings.cellSize * team1.base.ui.si + 'px', 'width': settings.cellSize * team1.base.ui.si + 'px', 'left': settings.cellSize * team1.base.x + 'px', 'top': settings.cellSize * team1.base.y + 'px'}"
+                ng-class="{'selected': selectedObject.id == team1.base.id}"
+                ng-click="selectObject(team1.base.id, $event)"
+                id="team-1-base">
+                <span class="health" style="font-size: {{settings.cellSize/10}}em; top: -{{settings.cellSize*2}}px;">{{team1.base.h}}</span>
+            </div>
+        </div>
+        <div ng-if="team2.base !== null">
+            <div class="board-object base team2" 
+                ng-style="{'height': settings.cellSize * team2.base.ui.si + 'px', 'width': settings.cellSize * team2.base.ui.si + 'px', 'left': settings.cellSize * team2.base.x + 'px', 'top': settings.cellSize * team2.base.y + 'px'}"
+                ng-class="{'selected': selectedObject.id == team2.base.id}"
+                ng-click="selectObject(team2.base.id, $event)"
+                id="team-2-base">
+                <span class="health" style="font-size: {{settings.cellSize/10}}em; top: -{{settings.cellSize*2}}px;">{{team2.base.h}}</span>
+            </div>
+        </div>
+        <div class="board-object minion team1" ng-repeat="minion in team1.minions | minion:'none'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team1 attack" ng-repeat="minion in team1.minions | minion:'attack'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team1 tank" ng-repeat="minion in team1.minions | minion:'health'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team1 speed" ng-repeat="minion in team1.minions | minion:'speed'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team1 mining" ng-repeat="minion in team1.minions | minion:'mining'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team1 vision" ng-repeat="minion in team1.minions | minion:'vision'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team2" ng-repeat="minion in team2.minions | minion:'none'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team2 attack" ng-repeat="minion in team2.minions | minion:'attack'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team2 tank" ng-repeat="minion in team2.minions | minion:'health'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team2 speed" ng-repeat="minion in team2.minions | minion:'speed'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team2 mining" ng-repeat="minion in team2.minions | minion:'mining'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div class="board-object minion team2 vision" ng-repeat="minion in team2.minions | minion:'vision'" ng-style="{'height': settings.cellSize + 'px', 'width': settings.cellSize + 'px', 'left': settings.cellSize * minion.x + 'px', 'top': settings.cellSize * minion.y + 'px'}"
+            ng-class="{'selected': selectedObject.id == minion.id}"
+            ng-click="selectObject(minion.id, $event)"
+            id="minion-{{minion.id}}">
+            <span class="health" style="font-size: {{settings.cellSize/20}}em; top: -{{settings.cellSize}}px;">{{minion.hp}}</span>
+        </div>
+        <div ng-repeat="row in cells" ng-style="{'height': settings.cellSize + 'px'}">
+            <div class="board-object cell" ng-repeat="cell in row" ng-class="{'fog': cell.foggy, 'red': cell.red, 'cyan': cell.cyan, 'gold': cell.gold}" ng-style="{'width': settings.cellSize + 'px', 'height': settings.cellSize + 'px'}" ng-click="cellClicked($index, $parent.$index)" ></div>
+        </div> 
+    </div>
+</div>

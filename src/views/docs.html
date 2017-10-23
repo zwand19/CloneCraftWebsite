@@ -1,0 +1,61 @@
+<div id="layout" class="content doc-layout">
+    <div id="nav" class="pure-u">
+        <div class="nav-inner">
+            <a href="/#/CloneCraft">Clone Craft</a>
+            <div class="pure-menu pure-menu-open">
+                <br/>
+                <ul>
+                    <li><a ng-click="showMenu('overview')" ng-class="{ 'selected-doc-menu': currentMenu == 'overview' }">Overview</a></li>
+                    <li><a ng-click="showMenu('minions')" ng-class="{ 'selected-doc-menu': currentMenu == 'minions' }">Minions</a></li>
+                    <li><a ng-click="showMenu('playing')" ng-class="{ 'selected-doc-menu': currentMenu == 'playing' }">Playing the Game</a></li>
+                    <br />
+                    <li><a ng-click="showMenu('building')" ng-class="{ 'selected-doc-menu': currentMenu == 'building' }">Building an AI</a></li>
+                    <li><a ng-click="showMenu('commands')" ng-class="{ 'selected-doc-menu': currentMenu == 'commands' }">Commands</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="list" class="pure-u-1">
+        <div class="email-item" ng-repeat="submenu in submenus" 
+             ng-click="showView(submenu)" ng-class="{ 'email-item-unread': currentSubmenu == submenu.title }"
+             ng-show="submenu.parent == currentMenu">
+            <h4 class="email-subject">{{submenu.title}}</h4>
+            <span class="email-desc">{{submenu.description}}</span>
+        </div>
+    </div>
+    
+    <div id="main" class="pure-u-1">
+        <div ng-include="'/public/views/overview-tournament.html'" ng-show="currentDoc == 'overview-tournament'"></div>
+        <div ng-include="'/public/views/overview-basics.html'" ng-show="currentDoc == 'overview-basics'"></div>
+        <div ng-include="'/public/views/overview-board.html'" ng-show="currentDoc == 'overview-board'"></div>
+        <div ng-include="'/public/views/overview-base.html'" ng-show="currentDoc == 'overview-base'"></div>
+        <div ng-include="'/public/views/overview-tips.html'" ng-show="currentDoc == 'overview-tips'"></div>
+
+        <div ng-include="'/public/views/minions-overview.html'" ng-show="currentDoc == 'minions-overview'"></div>
+        <div ng-include="'/public/views/minions-stats.html'" ng-show="currentDoc == 'minions-stats'"></div>
+        <div ng-include="'/public/views/minions-movement.html'" ng-show="currentDoc == 'minions-movement'"></div>
+        <div ng-include="'/public/views/minions-attacking.html'" ng-show="currentDoc == 'minions-attacking'"></div>
+        <div ng-include="'/public/views/minions-mining.html'" ng-show="currentDoc == 'minions-mining'"></div>
+        <div ng-include="'/public/views/minions-handing.html'" ng-show="currentDoc == 'minions-handing'"></div>
+        <div ng-include="'/public/views/minions-graphics.html'" ng-show="currentDoc == 'minions-graphics'"></div>
+
+        <div ng-include="'/public/views/playing-overview.html'" ng-show="currentDoc == 'playing-overview'"></div>
+        <div ng-include="'/public/views/playing-main.html'" ng-show="currentDoc == 'playing-main'"></div>
+        <div ng-include="'/public/views/playing-panels.html'" ng-show="currentDoc == 'playing-panels'"></div>
+        <div ng-include="'/public/views/playing-settings.html'" ng-show="currentDoc == 'playing-settings'"></div>
+
+        <div ng-include="'/public/views/building-package.html'" ng-show="currentDoc == 'building-package'"></div>
+        <div ng-include="'/public/views/building-api.html'" ng-show="currentDoc == 'building-api'"></div>
+        <div ng-include="'/public/views/building-status.html'" ng-show="currentDoc == 'building-status'"></div>
+        <div ng-include="'/public/views/building-testing.html'" ng-show="currentDoc == 'building-testing'"></div>
+        <div ng-include="'/public/views/building-submitting.html'" ng-show="currentDoc == 'building-submitting'"></div>
+
+        <div ng-include="'/public/views/commands-object.html'" ng-show="currentDoc == 'commands-object'"></div>
+        <div ng-include="'/public/views/commands-attack.html'" ng-show="currentDoc == 'commands-attack'"></div>
+        <div ng-include="'/public/views/commands-build.html'" ng-show="currentDoc == 'commands-build'"></div>
+        <div ng-include="'/public/views/commands-hand.html'" ng-show="currentDoc == 'commands-hand'"></div>
+        <div ng-include="'/public/views/commands-mine.html'" ng-show="currentDoc == 'commands-mine'"></div>
+        <div ng-include="'/public/views/commands-move.html'" ng-show="currentDoc == 'commands-move'"></div>
+    </div>
+</div>

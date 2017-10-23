@@ -1,0 +1,62 @@
+﻿<div class="panel-container">
+    <h1 class="text-center">{{panel.title}}</h1>
+    <div ng-include="'/public/views/game/settings-panel.html'" ng-show="showSettings"></div>
+    <div ng-show="selectedObject.id">
+        <h3 ng-show="selectedType == 'minion'">Id: <span class="pull-right">{{selectedObject.id}}</span></h3>
+        <h3 ng-show="selectedObject.h !== undefined" class="no-margin-top">Health: <span class="pull-right">{{selectedObject.h}}</span></h3>
+        <h3 ng-show="selectedObject.g !== undefined" class="no-margin-top">Gold: <span class="pull-right">{{selectedObject.g}}</span></h3>
+        <h3 class="no-margin-top">x: <span class="pull-right">{{selectedObject.x}}</span></h3>
+        <h3 class="no-margin-top">y: <span class="pull-right">{{selectedObject.y}}</span></h3>
+        <div ng-show="selectedEnemy && selectedType == 'base' && !watchingGame">
+            <h3 class="text-center">Destroy this base to win!</h3>
+        </div>
+        <div ng-hide="selectedEnemy || currentTeam.type !== 'human' || winner !== null || watchingGame">
+            <form ng-show="selectedType == 'base' && selectedObject.cb" ng-submit="beginBuild()">
+                <div ng-show="currentTeam.base.g < 50">
+                    <h3 class="text-center">You do not have enough gold to build a minion</h3>
+                </div>
+                <div ng-show="currentTeam.base.g >= 50 && !buildingStats.building">
+                    <h3 class="text-center" ng-show="((buildingStats.d + buildingStats.r + buildingStats.h + buildingStats.s + buildingStats.m + buildingStats.v) <= 10 || currentTeam.base.g >= 100) && (buildingStats.d + buildingStats.r + buildingStats.h + buildingStats.s + buildingStats.m + buildingStats.v) <= 19">Allocate your minion's stat points</h3>
+                    <h3 class="text-center" ng-show="currentTeam.base.g < 100 && (buildingStats.d + buildingStats.r + buildingStats.h + buildingStats.s + buildingStats.m + buildingStats.v) > 10">You do not have enough gold to build a greater minion</h3>
+                    <h3 class="text-center" ng-show="currentTeam.base.g >= 100 && (buildingStats.d + buildingStats.r + buildingStats.h + buildingStats.m + buildingStats.s + buildingStats.v) > 19">This minion has too many stat points</h3>
+                    <h3>Damage: <input type="number" min="1" max="5" class="pull-right" ng-model="buildingStats.d"/></h3>
+                    <h3>Range: <input type="number" min="1" max="5" class="pull-right" ng-model="buildingStats.r"/></h3>
+                    <h3>Health: <input type="number" min="1" max="14" class="pull-right" ng-model="buildingStats.h"/></h3>
+                    <h3>Mining: <input type="number" min="1" max="10" class="pull-right" ng-model="buildingStats.m"/></h3>
+                    <h3>Speed: <input type="number" min="1" max="10" class="pull-right" ng-model="buildingStats.s"/></h3>
+                    <h3>Vision: <input type="number" min="1" max="8" class="pull-right" ng-model="buildingStats.v"/></h3>
+                    <div class="base-panel-buffer"></div>
+                    <button type="submit" class="btn btn-info panel-btn" ng-show="(buildingStats.d + buildingStats.r + buildingStats.h + buildingStats.s + buildingStats.m + buildingStats.v) <= 10">Build Lesser Minion (50 gold)</button>
+                    <button type="submit" class="btn btn-info panel-btn" ng-show="(buildingStats.d + buildingStats.r + buildingStats.h + buildingStats.s + buildingStats.m + buildingStats.v) > 10">Build Greater Minion (100 gold)</button>
+                </div>
+                <div ng-show="buildingStats.building">
+                    <h3 class="text-center">Click on the cell you wish to create your minion at</h3>
+                    <button type="button" class="btn btn-danger panel-btn" ng-click="cancel()">Cancel</button>
+                </div>
+            </form>
+            <div ng-show="selectedType == 'minion'">
+                <div ng-hide="attacking || mining || handing">
+                    <button type="button" class="btn btn-info panel-btn" ng-click="beginAttack()" ng-show="selectedObject.ca">Attack</button>
+                    <button type="button" class="btn btn-info panel-btn" ng-click="beginHandOff()">Hand Off</button>
+                    <button type="button" class="btn btn-info panel-btn" ng-click="beginMine()" ng-show="selectedObject.ca">Mine</button>
+                    <button type="button" class="btn btn-info panel-btn" ng-click="moveMinion('N')" ng-show="selectedObject.mr > 0">Move North</button>
+                    <button type="button" class="btn btn-info panel-btn" ng-click="moveMinion('E')" ng-show="selectedObject.mr > 0">Move East</button>
+                    <button type="button" class="btn btn-info panel-btn" ng-click="moveMinion('S')" ng-show="selectedObject.mr > 0">Move South</button>
+                    <button type="button" class="btn btn-info panel-btn" ng-click="moveMinion('W')" ng-show="selectedObject.mr > 0">Move West</button>
+                </div>
+                <div ng-show="attacking">
+                    <h3 class="text-center">Click on the minion or base you wish to attack</h3>
+                </div>
+                <div ng-show="mining">
+                    <h3 class="text-center">Click on the resource you wish to mine</h3>
+                </div>
+                <div ng-show="handing">
+                    <h3 class="text-center">Click on the minion you wish to hand off your gold to</h3>
+                </div>
+                <div ng-show="attacking || mining || handing">
+                    <button type="button" class="btn btn-danger panel-btn" ng-click="cancel()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

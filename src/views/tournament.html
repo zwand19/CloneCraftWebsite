@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+        <div ng-controller="mainController">
+            <div ng-show="!startedTournament">
+                <div ng-repeat="c in competitors">
+                    <input type="text" class="competitor-name-input" value="" maxlength="25" ng-model="c.name"/>
+                    <input type="text" class="competitor-port" value="http://localhost:3000" maxlength="25" ng-model="c.endpoint"/>
+                    <button ng-click="removeCompetitor($index)" class="btn btn-danger">-</button>
+                </div>
+                <br />
+                <button class="btn btn-success" ng-click="addCompetitor()">Add Competitor</button>
+                <br />
+                <br />
+                <button class="btn btn-primary btn-lg" ng-click="startTournament()" ng-hide="startedTournament">Start Tournament</button>
+            </div>
+            <div class="col-xs-1">
+                <br />
+                <button class="btn btn-primary btn-lg" ng-click="startRound()" ng-show="startedTournament && !roundUnderway">Battle!</button>
+                <button class="btn btn-primary btn-lg disabled" ng-show="startedTournament && roundUnderway">Battle!</button>
+            </div>
+            <div class="col-xs-2">
+                <div class="scoreboard-wrapper" ng-show="results == ''">
+                    <div ng-show="startedTournament" class="bracket" ng-style="getWinnersBracketStyle()">
+                        <h3>
+                            Winners Bracket:
+                        </h3>
+                    </div>
+                    <div ng-show="startedTournament">
+                        <h3>
+                            Losers Bracket:
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-9">
+                <div class="scoreboard-wrapper" ng-show="results == ''">
+                    <div class="bracket" ng-style="getWinnersBracketStyle()">
+                        <div ng-repeat="m in winnersBracket" ng-show="startedTournament" class="match" ng-style="getWinnerStyle(m.x, m.y)">
+                            <div class="team-name winner" ng-show="m.compA != null && m.winner != null && m.winner.name == m.compA.name">{{m.compA.name}}</div>
+                            <div class="team-name loser" ng-show="m.compA != null && m.winner != null && m.winner.name != m.compA.name">{{m.compA.name}}</div>
+                            <div class="team-name" ng-show="m.compA != null && m.winner == null">{{m.compA.name}}</div>
+                            <div class="team-name" ng-show="m.compA == null">BYE</div>
+                            <div class="team-name bottom-name winner" ng-show="m.compB != null && m.winner != null && m.winner.name == m.compB.name">{{m.compB.name}}</div>
+                            <div class="team-name bottom-name loser" ng-show="m.compB != null && m.winner != null && m.winner.name != m.compB.name">{{m.compB.name}}</div>
+                            <div class="team-name bottom-name" ng-show="m.compB != null && m.winner == null">{{m.compB.name}}</div>
+                            <div class="team-name bottom-name" ng-show="m.compB == null">BYE</div>
+                        </div>
+                    </div>
+                    <div class="bracket">
+                        <div ng-repeat="m in losersBracket" ng-show="startedTournament" class="match" ng-style="getLoserStyle(m.x, m.y)">
+                            <div class="team-name winner" ng-show="m.compA != null && m.winner != null && m.winner.name == m.compA.name">{{m.compA.name}}</div>
+                            <div class="team-name loser" ng-show="m.compA != null && m.winner != null && m.winner.name != m.compA.name">{{m.compA.name}}</div>
+                            <div class="team-name" ng-show="m.compA != null && m.winner == null">{{m.compA.name}}</div>
+                            <div class="team-name" ng-show="m.compA == null">BYE</div>
+                            <div class="team-name bottom-name winner" ng-show="m.compB != null && m.winner != null && m.winner.name == m.compB.name">{{m.compB.name}}</div>
+                            <div class="team-name bottom-name loser" ng-show="m.compB != null && m.winner != null && m.winner.name != m.compB.name">{{m.compB.name}}</div>
+                            <div class="team-name bottom-name" ng-show="m.compB != null && m.winner == null">{{m.compB.name}}</div>
+                            <div class="team-name bottom-name" ng-show="m.compB == null">BYE</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="scoreboard-wrapper" ng-show="results != ''">
+                    <h3><pre>{{results}}</pre></h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

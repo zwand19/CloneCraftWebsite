@@ -1,0 +1,27 @@
+<div class="navbar navbar-fixed-top navbar-inverse">  
+    <div class="navbar-inner">
+	    <ul class="nav nav-pills pull-left" style="width: 100%">
+            <li>
+                <a href="/#/CloneCraft/" class="navbar-brand hidden-xs hidden-sm" style="margin-top: 1px">Clone Craft<small>&nbsp;Geneca Code Wars IV</small></a>
+                <a href="/#/CloneCraft/" class="navbar-brand hidden-md hidden-lg" style="margin-top: 1px">Back</a>
+		    </li>
+            <li> 
+                <small class="navbar-brand header-info default-cursor" title="the current round of the game">Round: {{status.round}}</small>
+            </li>
+            <li ng-if="winner !== null">
+                <small class="navbar-brand header-info">Winner: {{winner.name}}!</small>
+            </li>
+            <li style="float: right"> 
+                <small class="navbar-brand header-info default-cursor" title="the gold stored in your base">Gold: {{currentTeam.base.g}}</small>
+            </li>
+            <li style="float: right"> 
+                <small class="navbar-brand header-info default-cursor hidden-xs" title="you can only have 15 minions on the board at any given time">Number of Minions: {{currentTeam.minions.length}}/15</small>
+            </li>
+            <li ng-show="winner === null" style="float: right"> 
+                <small class="navbar-brand header-info default-cursor" title="the name of the team whose turn it is">{{currentTeam.name}}</small>
+            </li>
+        </ul>
+    </div>  
+</div>
+<ng:include src="'/public/views/game/board.html'" class="game-board"></ng:include>
+<ng:include src="'/public/views/game/panel.html'"></ng:include>

@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<title>Jasmine Tests</title>
+		<script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+	    <!-- Files required for Jasmine -->
+	    <link href="jasmine/jasmine.css" rel="stylesheet"/>
+	    <script type="text/javascript" src="jasmine/jasmine.js"></script>
+	    <script type="text/javascript" src="jasmine/jasmine-html.js"></script>
+	    
+	    <!-- Javascript files to be tested -->
+	    <script type="text/javascript" src="entities/base.js"></script>
+
+	    <!-- Spec files holding the tests -->
+	    <script type="text/javascript" src="base-spec.js"></script>
+
+	    <!-- don't modify this code... -->
+	    <script type="text/javascript">
+	        (function() {
+	            var jasmineEnv = jasmine.getEnv();
+	            var htmlReporter = new jasmine.HtmlReporter();
+
+	            jasmineEnv.addReporter(htmlReporter);
+
+	            jasmineEnv.specFilter = function(spec) {
+	                return htmlReporter.specFilter(spec);
+	            };
+
+	            var currentWindowOnload = window.onload;
+
+	            window.onload = function() {
+	                if (currentWindowOnload) {
+	                    currentWindowOnload();
+	                }
+	                execJasmine();
+	            };
+
+	            function execJasmine() {
+	                jasmineEnv.execute();
+	            }
+
+	        })();
+	  </script>
+	</head>
+
+	<body>
+		<h1>Jasmine Tests</h1>
+
+	</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "name": "app",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "~3.0.0",
+    "html5shiv": "~3.6.2",
+    "json3": "~3.2.5",
+    "requirejs": "~2.1.8",
+    "angular": "~1.2.20",
+    "angular-animate": "~1.2.20",
+    "angular-resource": "~1.2.20",
+    "angular-route": "~1.2.20",
+    "angular-socket-io": "~0.6.0",
+    "cryptojslib": "3.1.2"
+  }
+}

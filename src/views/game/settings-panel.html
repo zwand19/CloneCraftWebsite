@@ -1,0 +1,23 @@
+﻿<form class="form-horizontal">
+    <div class="form-group row">
+        <label for="fogOfWar" class="col-lg-8 control-label">Show Fog of War</label>
+        <div class="col-lg-4">
+            <input type="checkbox" class="form-control" id="fogOfWar" ng-model="settings.showFogOfWar" ng-disabled="watchingGame" ng-click="changedFogOfWar()"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="compass" class="col-lg-8 control-label">Zoom</label>
+        <div class="col-lg-4">
+            <input type="range" min="20" max="120" class="form-control grid-size-slider" id="gridSize" ng-model="settings.cellSize"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="compass" class="col-lg-8 control-label">Autoturn/Watch Interval</label>
+        <div class="col-lg-4">
+            <input type="range" min="600" max="1500" class="form-control grid-size-slider" id="watchSpeed" ng-model="settings.watchSpeed"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <button type="button" class="btn btn-lg btn-primary align-center" ng-click="resetGame()">Reset Game</button>
+    </div>
+</form>

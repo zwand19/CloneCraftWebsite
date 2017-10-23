@@ -1,0 +1,19 @@
+{
+	"confirmation_base_url": "https://codewars.geneca.com/#/confirm/",
+	"server_disk": "D:",
+	"downloads_base_url": "https://codewars.geneca.com/#/downloads/",
+	"emails_sender": "Geneca CodeWars <geneca.codewars@geneca.com>",
+	"gmail_user_name": "geneca.codewars@gmail.com",
+	"gmail_password": "Geneca2014",
+	"iis_site": "http://localhost:5151",
+	"log_api_failures": true,
+	"log_api_failure_game_statuses": false,
+	"minutes_to_hold_games_in_memory": 120,
+	"mongodb_url": "mongodb://localhost:27017/clone_craft_db",
+	"script_create_iis_app": "ShellScripts/CreateIISApplication.ps1",
+	"script_execute_powershell": "ShellScripts/ExecutePowershell.bat",
+	"script_start_node_server": "ShellScripts/StartNodeServer.bat",
+	"socket_garbage_cleanup_interval": 600000,
+	"token_lifetime_ms": 43200000,
+	"tournament_time": { "hour": 22, "minute": 0, "dayOfWeek": 0 }
+}
