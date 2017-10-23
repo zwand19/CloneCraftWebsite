@@ -73,7 +73,6 @@
     "npm": "3.3.9"
   },
   "scripts": {
-    "postinstall": "bower install",
     "start": "node ./start.js"
   },
   "devDependencies": {
