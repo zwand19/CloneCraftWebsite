@@ -409,7 +409,7 @@ module.exports = function(grunt) {
     return require('./server/server');
   });
   grunt.registerTask('build', ['clean:working', 'coffeelint', 'copy:app', 'ngShim', 'coffee:app', 'less', 'markdown', 'template:indexDev', 'copy:dev']);
-  grunt.registerTask('default', ['build', 'launch', 'watch:dev']);
+  grunt.registerTask('default', ['build', 'launch']);
   grunt.registerTask('local', ['build', 'launch']);
   grunt.registerTask('server', ['build', 'launch', 'watch:dev']);
   grunt.registerTask('azure', ['default']);
