@@ -65,11 +65,11 @@
     "q": "^1.4.1",
     "request": "^2.27.0",
     "serve-static": "^1.10.0",
-    "socket.io": "^0.9.14",
+    "socket.io": "^2.0.4",
     "supervisor": "^0.6.0"
   },
   "engines": {
-    "node": "4.2.1",
+    "node": "4.4.7",
     "npm": "3.3.9"
   },
   "scripts": {

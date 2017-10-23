@@ -288,8 +288,7 @@ module.exports = function(grunt) {
           {
             'ngAnimate': 'libs/angular-animate.min.js',
             'ngResource': 'libs/angular-resource.min.js',
-            'ngRoute': 'libs/angular-route.min.js',
-            'btford.socket-io': 'libs/socket.js'
+            'ngRoute': 'libs/angular-route.min.js'
           }
         ],
         src: '**/*.coffee',
@@ -410,7 +409,7 @@ module.exports = function(grunt) {
     return require('./server/server');
   });
   grunt.registerTask('build', ['clean:working', 'coffeelint', 'copy:app', 'ngShim', 'coffee:app', 'less', 'markdown', 'template:indexDev', 'copy:dev']);
-  grunt.registerTask('default', ['build', 'launch']);
+  grunt.registerTask('default', ['build', 'launch', 'watch:dev']);
   grunt.registerTask('local', ['build', 'launch']);
   grunt.registerTask('server', ['build', 'launch', 'watch:dev']);
   grunt.registerTask('azure', ['default']);

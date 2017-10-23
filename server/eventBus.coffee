@@ -2,7 +2,7 @@ events = require 'events'
 
 class EventBus
 	constructor: () ->
-		@eventEmitter = new events.EventEmitter()
+		@eventEmitter = events
 
 	publish: (eventName, data) ->
 		@eventEmitter.emit eventName, data

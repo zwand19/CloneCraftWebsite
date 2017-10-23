@@ -1,5 +1,5 @@
 SocketFactory = ($rootScope) ->
-	socket = io.connect()
+	socket = io()
 	return {
 		on: (eventName, callback) ->
 			socket.on eventName, ->
