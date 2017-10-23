@@ -410,9 +410,10 @@ module.exports = function(grunt) {
     return require('./server/server');
   });
   grunt.registerTask('build', ['clean:working', 'coffeelint', 'copy:app', 'ngShim', 'coffee:app', 'less', 'markdown', 'template:indexDev', 'copy:dev']);
-  grunt.registerTask('default', ['build', 'launch', 'open', 'watch:none']);
+  grunt.registerTask('default', ['build', 'launch']);
+  grunt.registerTask('local', ['build', 'launch']);
   grunt.registerTask('server', ['build', 'launch', 'watch:dev']);
-  grunt.registerTask('dev', ['default']);
+  grunt.registerTask('azure', ['default']);
   grunt.registerTask('test-server', ['clean:working', 'copy:debug', 'coffee:debug', 'jasmine_node:server']);
   grunt.registerTask('watch-server', ['test-server', 'watch:server']);
   grunt.registerTask('test-game', ['clean:working', 'copy:debug', 'coffee:debug', 'jasmine_node:game']);
