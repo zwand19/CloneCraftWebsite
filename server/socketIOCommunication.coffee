@@ -81,6 +81,7 @@ class SocketIOCommunication
 					if (data.teams[0].type is 'king' or data.teams[1].type is 'king') and Standings.getKingApi() is ''
 						return socket.emit 'no king'
 					createGame data.teams, socketWrapper, data.authToken
+					Logger.info "created game", socketWrapper.game
 					socketWrapper.gameHasHuman = socketWrapper.game.teams[0].type is 'human' or socketWrapper.game.teams[1].type is 'human'
 					if socketWrapper.gameHasHuman
 						emitStatusOrRunTurn data.showFog, false
