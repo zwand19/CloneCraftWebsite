@@ -79,7 +79,6 @@ class SocketIOCommunication
 				try
 					if (data.teams[0].type is 'king' or data.teams[1].type is 'king') and Standings.getKingApi() is ''
 						return socket.emit 'no king'
-					Logger.info "creating game for socket id #{socket.id}", data.teams
 					createGame data.teams, socketWrapper, data.authToken
 					Logger.info "created game", socketWrapper.game
 					socketWrapper.gameHasHuman = socketWrapper.game.teams[0].type is 'human' or socketWrapper.game.teams[1].type is 'human'
@@ -204,6 +203,7 @@ class SocketIOCommunication
 	# Private Methods
 	#----------------
 	createGame = (teams, socketWrapper, authToken) ->
+		Logger.info "creating game for socket id #{socketWrapper.id}. Teams is #{typeof teams}", teams
 		gameTeams = []
 		# Create teams from client data
 		for team, i in teams
