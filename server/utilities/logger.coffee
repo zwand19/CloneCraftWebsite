@@ -37,7 +37,7 @@ class Logger
 						if err
 							console.error "ERROR CREATING FILE #{filePath}"
 							console.error err
-			fullLogPath = "full_log.txt"
+			fullLogPath = getFilePath "full_log.txt"
 			FS.exists fullLogPath, (exists) ->
 				if exists
 					FS.appendFile fullLogPath, text, (err) ->
