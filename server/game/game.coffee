@@ -9,7 +9,7 @@ Team = require '../entities/team'
 # Creates the game board and contains method to run the games based off of inputted commands
 class Game
 	constructor: (@id, @teams, startingConfiguration) ->
-		if teams.length isnt 2 or not teams[0] or not teams[1] or teams[0] not instanceof Team or teams[1] not instanceof Team
+		if @teams.length isnt 2 or not @teams[0] or not @teams[1] or @teams[0] not instanceof Team or @teams[1] not instanceof Team
 			Logger.error 'Cannot create game with invalid teams'
 			throw new Error 'Unable to create game. Invalid teams'
 		@turn = 0
