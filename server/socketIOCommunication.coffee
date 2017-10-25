@@ -77,9 +77,9 @@ class SocketIOCommunication
 			socket.on 'create game', (data) ->
 				checkRunningTournament()
 				try
-					Logger.info "creating game for socket id #{socket.id}"
 					if (data.teams[0].type is 'king' or data.teams[1].type is 'king') and Standings.getKingApi() is ''
 						return socket.emit 'no king'
+					Logger.info "creating game for socket id #{socket.id}", data.teams
 					createGame data.teams, socketWrapper, data.authToken
 					Logger.info "created game", socketWrapper.game
 					socketWrapper.gameHasHuman = socketWrapper.game.teams[0].type is 'human' or socketWrapper.game.teams[1].type is 'human'
