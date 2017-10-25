@@ -204,6 +204,8 @@ class SocketIOCommunication
 	#----------------
 	createGame = (teams, socketWrapper, authToken) ->
 		Logger.info "creating game for socket id #{socketWrapper.id}. Teams is #{typeof teams}", teams
+		Logger.info "team 1", teams[0]
+		Logger.info "team 2", teams[1]
 		gameTeams = []
 		# Create teams from client data
 		for team, i in teams
