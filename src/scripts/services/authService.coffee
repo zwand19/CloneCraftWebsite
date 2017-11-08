@@ -60,7 +60,7 @@ class AuthService
 	onLoggedOut: (callback) ->
 		@logOutCallbacks.push callback
 
-	register: (email, username, password, language, callback) ->
+	register: (email, username, password, apiUrl, callback) ->
 		ensureSupportsHtml5Storage callback
 		@http.post("/register",
 				transformRequest: angular.identity
@@ -70,7 +70,7 @@ class AuthService
 					email: email
 					password: password
 					username: username
-					language: language
+					apiUrl: apiUrl
 			)
 			.success((result) ->
 				if result.success

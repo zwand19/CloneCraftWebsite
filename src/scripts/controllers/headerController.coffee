@@ -95,7 +95,7 @@ class HeaderController
 			if $scope.registerPassword isnt $scope.registerPasswordConfirmation
 				return alert 'Your passwords do not match'
 			$scope.waitingOnServer = true
-			authService.register $scope.registerEmail, $scope.registerUsername, $scope.registerPassword, $scope.registerLanguage, registerCallback
+			authService.register $scope.registerEmail, $scope.registerUsername, $scope.registerPassword, $scope.apiUrl, registerCallback
 
 		$scope.registerIfEnter = (e) ->
 			if e.keyCode is 13 then $scope.register()

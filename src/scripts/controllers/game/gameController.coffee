@@ -122,7 +122,7 @@ class GameController
 
 		$scope.initializeTeam1 = ->
 			if authService.isLoggedIn()
-				$scope.team1.type = "submitted"
+				$scope.team1.type = "hosted"
 			else $scope.team1.type = "human"
 
 		$scope.loadGame = ->
@@ -235,13 +235,13 @@ class GameController
 			$scope.team1.name = 'T1 Current King' if $scope.team1.type is 'king'
 			$scope.team1.name = "T1 AI Port #{$scope.team1.port}" if $scope.team1.type is 'ai'
 			$scope.team1.name = 'T1 Human' if $scope.team1.type is 'human'
-			$scope.team1.name = 'T1 Submitted AI' if $scope.team1.type is 'submitted'
+			$scope.team1.name = 'T1 hosted AI' if $scope.team1.type is 'hosted'
 			
 		$scope.team2Changed = ->
 			$scope.team2.name = 'T2 Current King' if $scope.team2.type is 'king'
 			$scope.team2.name = "T2 AI Port #{$scope.team2.port}" if $scope.team2.type is 'ai'
 			$scope.team2.name = 'T2 Human' if $scope.team2.type is 'human'
-			$scope.team2.name = 'T2 Submitted AI' if $scope.team2.type is 'submitted'
+			$scope.team2.name = 'T2 hosted AI' if $scope.team2.type is 'hosted'
 
 		$scope.watchAIs = ->
 			$scope.runningAIs = true
@@ -447,7 +447,7 @@ class GameController
 
 		tryStartGameFromParams = ->
 			buildTeamFromParams = (type, name, port) ->
-				if type is 'king' or type is 'submitted' or type is 'human'
+				if type is 'king' or type is 'hosted' or type is 'human'
 					return {
 						type: type
 						name: name
@@ -484,7 +484,7 @@ class GameController
 			if authService.isLoggedIn()
 				authService.logout()
 				alert 'Could not start game. Session token has expired. Please try logging out and back in'
-			else alert 'Could not start game. Must be logged in to play with a submitted AI'
+			else alert 'Could not start game. Must be logged in to play with a hosted AI'
 
 		# need to lookup minions and update their properties instead of just setting new reference so we can see animations
 		updateMinions = (oldMinions, newMinions) ->

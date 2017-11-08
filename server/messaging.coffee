@@ -13,7 +13,7 @@ Messaging =
 	Registration:
 		EmailExists: 'CLIENTERROR:A competitor already exists with that email'
 		EmailNotSent : 'CLIENTERROR:ERROR: Competitor registered but confirmation email failed to send. Please contact Zack Wand, Mike Reyes, or Jack Morrissey from the CodeWars team'
-		InvalidLanguage: 'CLIENTERROR:Invalid language'
+		ApiUrl: 'CLIENTERROR:Invalid API URL, please see documentation'
 		PasswordContainsSpace: 'CLIENTERROR:Passwords cannot contain spaces'
 		PasswordInvalidCharacter: 'CLIENTERROR:Invalid character in password'
 		PasswordLength: 'CLIENTERROR:Password must be 6-20 characters long'

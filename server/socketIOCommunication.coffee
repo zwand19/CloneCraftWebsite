@@ -80,7 +80,7 @@ class SocketIOCommunication
 					if (data.teams[0].type is 'king' or data.teams[1].type is 'king') and Standings.getKingApi() is ''
 						return socket.emit 'no king'
 					createGame data.teams, socketWrapper, data.authToken
-					Logger.info "created game", socketWrapper.game
+					Logger.info "Created Game for socket"
 					socketWrapper.gameHasHuman = socketWrapper.game.teams[0].type is 'human' or socketWrapper.game.teams[1].type is 'human'
 					if socketWrapper.gameHasHuman
 						emitStatusOrRunTurn data.showFog, false
@@ -147,17 +147,22 @@ class SocketIOCommunication
 					runKingTurn showFog
 				else if (continuing or socketWrapper.gameHasHuman) and currentTeam.type is 'ai'
 					emitRunAI()
-				else if (continuing or socketWrapper.gameHasHuman) and currentTeam.type is 'submitted'
-					if currentTeam.address is ''
-						Mongo.getCompetitor({name: currentTeam.username}, {address: true})
+				else if (continuing or socketWrapper.gameHasHuman) and currentTeam.type is 'hosted'
+					if !currentTeam.api_url
+						Mongo.getCompetitor({name: currentTeam.username}, {api_url: true})
 						.then (competitor) ->
-							socketWrapper.game.currentTeam.address = competitor.address
-							runSubmittedTurn(showFog, competitor.address)
+							if (!competitor)
+								Logger.info "Could not find competitor #{currentTeam.username}"
+								socket.emit 'game destroyed'
+								return
+							Logger.info "Found competitor #{currentTeam.username}, api url - #{competitor.api_url}"
+							socketWrapper.game.currentTeam.api_url = competitor.api_url
+							runHostedTurn(showFog, competitor.api_url)
 						.catch (err) ->
-							Logger.error "Could not get submitted ai address for #{currentTeam.username}"
+							Logger.error "Could not get hosted ai api url for #{currentTeam.username}"
 							Logger.error err
 							turnOver showFog
-					else runSubmittedTurn showFog, currentTeam.address
+					else runHostedTurn showFog, currentTeam.api_url
 				else emitStatus showFog
 
 			gameUpdated = () ->
@@ -181,10 +186,13 @@ class SocketIOCommunication
 					Logger.log err
 					turnOver showFog
 
-			runSubmittedTurn = (showFog, address) ->
+			runHostedTurn = (showFog, address) ->
+				json = socketWrapper.game.getGameStatus true
+				url = "#{address}/api/turn"
+				Logger.info "Sending request to #{url}", json
 				options =
-					json: socketWrapper.game.getGameStatus true
-					url: "#{address}/api/turn"
+					json: json
+					url: url
 					timeout: Constants.tournament.requestTimeout
 				HttpClient.post(options)
 				.then (commands) ->
@@ -208,7 +216,7 @@ class SocketIOCommunication
 		# Create teams from client data
 		for team, i in teams
 			newTeam = new Team i, team.name, '', team.type
-			if team.type is "submitted"
+			if team.type is "hosted"
 				try
 					username = Authentication.authenticateToken authToken
 				if not username

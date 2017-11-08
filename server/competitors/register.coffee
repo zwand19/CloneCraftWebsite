@@ -1,5 +1,4 @@
 Authentication = require '../authentication'
-BotSetup = require '../utilities/botSetup'
 Config = require '../config.json'
 Gravatar = require 'gravatar'
 Helpers = require '../helpers'
@@ -18,8 +17,8 @@ class Register
 	#---------------
 	# Public Methods
 	#---------------
-	register: (email, username, password, language) ->
-		validateRegistration(email, username, password, language)
+	register: (email, username, password, apiUrl) ->
+		validateRegistration(email, username, password, apiUrl)
 		.then ->
 			#ensure no competitor with email or username already
 			Mongo.getCompetitor({ $or: [{email: email}, {name: username}]})
@@ -39,9 +38,8 @@ class Register
 				email: email
 				confirmed: false
 				confirmation_string: confirmationStr
-				language: language
+				api_url: apiUrl
 				registered_on: Helpers.getTimeStamp()
-				code_folder: Path.join './CompetitorCode/', username
 				gravatar: Gravatar.url(email, { s: '350', d: 'mm' }, true)
 				uploads: 0
 				gold_mined: 0
@@ -61,39 +59,20 @@ class Register
 				blurb: ''
 				salt: salt
 				password: hashedPassword
-			switch language
-				when 'C-Sharp'
-					competitor.address = "#{Config.iis_site}/#{username}"
-					addCompetitor competitor, email
-				when 'Node'
-					Mongo.getNewCompetitorPort()
-					.then (port) ->
-						competitor.port = port
-						competitor.address = "http://localhost:#{port}"
-						addCompetitor competitor, email
-				else throw new Error msg: Messaging.ServerError
+			Mongo.addCompetitor(competitor)
+			.then (competitor) ->
+				Logger.log "competitor #{competitor.name} added to database. sending registration email", competitor
+				MailService.sendRegistrationEmail(competitor.confirmation_string, email)
+			.catch (err) ->
+				Logger.error "Could not send registration email to #{competitor.name}"
+				Logger.error err
+				throw new Error Messaging.Registration.EmailNotSent
 
 	#----------------
 	# Private Methods
 	#----------------
-	addCompetitor = (competitor, email) ->
-		Mongo.addCompetitor(competitor)
-		.then (competitor) ->
-			Logger.log "competitor #{competitor.name} added to database. initializing site...", competitor
-			BotSetup.initializeCompetitor(competitor, competitor.language)
-		.catch (err) ->
-			throw Logger.error "Could not initialize competitor", null, err
-		.then ->
-			Logger.log "competitor #{competitor.name} initialized..."
-			Logger.log "sending registration email to #{competitor.name}"
-			MailService.sendRegistrationEmail(competitor.confirmation_string, email)
-		.catch (err) ->
-			Logger.error "Could not send registration email to #{competitor.name}"
-			Logger.error err
-			throw new Error Messaging.Registration.EmailNotSent
-
-	# Throw error if email, username, or language is invalid
-	validateRegistration = (email, username, password, language) ->
+	# Throw error if email, username, or api url is invalid
+	validateRegistration = (email, username, password, apiUrl) ->
 		# validate email
 		if not email
 			return Helpers.promisedError new Error Messaging.Registration.ProvideEmail
@@ -118,10 +97,10 @@ class Register
 		for character in invalidUsernameCharacters
 			if username.indexOf(character) isnt -1
 				return Helpers.promisedError new Error Messaging.Registration.PasswordInvalidCharacter
-		# validate language
-		if not language or botTypes.indexOf(language) is -1
-			Logger.info "language #{language} is invalid"
-			return Helpers.promisedError new Error Messaging.Registration.InvalidLanguage
+		return Helpers.promisedData()
+		# validate api url
+		if not apiUrl or apiUrl.indexOf("http") < 0 or apiUrl.indexOf("://") < 0
+			return Helpers.promisedError new Error Messaging.Registration.ApiUrl
 		return Helpers.promisedData()
 
 module.exports = new Register()

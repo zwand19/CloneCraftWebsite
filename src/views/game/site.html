@@ -26,7 +26,7 @@
                         <select class="opponent-select text-center absolute-right" style="width: 170px" ng-model="team1.type" ng-init="initializeTeam1()" ng-change="team1Changed()">
                             <option value="human">Human</option>
                             <option value="ai">Your Local AI</option>
-                            <option value="submitted" ng-show="isLoggedIn()">Your Submitted AI</option>
+                            <option value="hosted" ng-show="isLoggedIn()">Your Hosted AI</option>
                             <option value="king">Current King AI</option>
                         </select>
                         <br />
@@ -43,7 +43,7 @@
                     <img src="public/images/crown.png" style="float: right" ng-show="team1.type == 'king'"/>
                     <img src="public/images/human.png" style="float: right" ng-show="team1.type == 'human'"/>
                     <img src="public/images/robot.png" style="float: right" ng-show="team1.type == 'ai'"/>
-                    <img src="public/images/circuitry.png" style="float: right" ng-show="team1.type == 'submitted'"/>
+                    <img src="public/images/circuitry.png" style="float: right" ng-show="team1.type == 'hosted'"/>
                 </div>
             </div>
             <div class="col-md-6 col-xs-12 right-competitor">
@@ -52,7 +52,7 @@
                     <img src="public/images/crown.png" ng-show="team2.type == 'king'"/>
                     <img src="public/images/human.png" ng-show="team2.type == 'human'"/>
                     <img src="public/images/robot.png" ng-show="team2.type == 'ai'"/>
-                    <img src="public/images/circuitry.png" ng-show="team2.type == 'submitted'"/>
+                    <img src="public/images/circuitry.png" ng-show="team2.type == 'hosted'"/>
                 </div>
                 <div class="step col-lg-8 col-xs-9 larger" style="text-align: right; position: relative">
                     <div style="width: 270px; position: absolute; right: 15px">
@@ -61,7 +61,7 @@
                         <select class="opponent-select text-center absolute-right" style="width: 170px" ng-model="team2.type" ng-init="team2.type = 'king'" ng-change="team2Changed()">
                             <option value="human">Human</option>
                             <option value="ai">Your Local AI</option>
-                            <option value="submitted" ng-show="isLoggedIn()">Your Submitted AI</option>
+                            <option value="hosted" ng-show="isLoggedIn()">Your Hosted AI</option>
                             <option value="king">Current King AI</option>
                         </select>
                         <br />

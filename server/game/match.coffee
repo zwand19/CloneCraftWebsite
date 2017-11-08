@@ -24,8 +24,8 @@ class Match
 		@gameInfos = []
 		@statuses = []
 		for i in [0...@bestOf]
-			team1 = new Team(@competitor1.id, @competitor1.name, @competitor1.address) if @competitor1 != null
-			team2 = new Team(@competitor2.id, @competitor2.name, @competitor2.address) if @competitor2 != null
+			team1 = new Team(@competitor1.id, @competitor1.name, @competitor1.apiUrl) if @competitor1 != null
+			team2 = new Team(@competitor2.id, @competitor2.name, @competitor2.apiUrl) if @competitor2 != null
 			if (i % 2) is 0
 				@games.push new Game(uuid.v1(), [team1, team2])
 			else @games.push new Game(uuid.v1(), [team2, team1])
