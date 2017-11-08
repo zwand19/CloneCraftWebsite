@@ -14,7 +14,6 @@ class HeaderController
 		$scope.navbarColor = null
 		$scope.registerUsername = ''
 		$scope.registerEmail = ''
-		$scope.registerLanguage = ''
 		$scope.registerPassword = ''
 		$scope.registerPasswordConfirmation = ''
 		$scope.showLoginPopup = false

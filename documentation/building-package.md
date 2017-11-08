@@ -2,7 +2,7 @@
 
 ***
 
-We have provided a starting set of code in each language so that you can focus entirely on creating your game AI.
+We have provided a starting set of code in a few languages so that you can focus entirely on creating your game AI.
 
 Each of these packages creates an http service that can be called by your local game server.
 

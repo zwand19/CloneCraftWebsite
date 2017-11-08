@@ -11,7 +11,7 @@ For the first time in Code Wars history, we are holding an extended competition.
 
 Any competitor can upload an implementation of their bot to our server and it will be added to the competition.
 
-Every Sunday night at 10pm, we will run a round robin tournament where each entry plays each other entry in 4 games, 2 as player one and 2 as player two.
+Every Sunday night at 10pm CT, we will run a round robin tournament where each entry plays each other entry in 4 games, 2 as player one and 2 as player two.
 
 The game results, files to view games, and standings will be posted after each tournament is run.
 
