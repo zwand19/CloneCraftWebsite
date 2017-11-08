@@ -20,7 +20,7 @@ class TournamentScheduler
 		.then (competitors) ->
 			tourneyCompetitors = []
 			for competitor in competitors
-				tourneyCompetitors.push new Competitor competitor._id.toHexString(), competitor.name, competitor.address, competitor.gravatar
+				tourneyCompetitors.push new Competitor competitor._id.toHexString(), competitor.name, competitor.apiUrl, competitor.gravatar
 			Logger.log 'COMPETITORS: ', tourneyCompetitors
 			tournament = new Tournament.RoundRobinTournament()
 			tournament.executeTournament(tourneyCompetitors)

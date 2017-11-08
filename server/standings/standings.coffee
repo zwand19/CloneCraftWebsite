@@ -27,9 +27,8 @@ class Standings
 				throw new Error Messaging.ServerError
 			if competitor.last_uploaded
 				tournament.scoreboard[0].lastUploaded = Helpers.getStringFromDateStamp competitor.last_uploaded
-			tournament.scoreboard[0].language = competitor.language
 			tournament.scoreboard[0].uploads = competitor.uploads
-			tournament.scoreboard[0].address = competitor.address
+			tournament.scoreboard[0].apiUrl = competitor.apiUrl
 			cachedTournament = tournamentFromDbTournament tournament
 			tournamentCache.push cachedTournament
 			tournamentCache = tournamentCache.sort Helpers.sortTournamentsDescending
@@ -133,7 +132,7 @@ class Standings
 			stats
 
 	getKingApi: ->
-		if tournamentCache.length is 0 then return '' else return tournamentCache[0].scoreboard[0].address
+		if tournamentCache.length is 0 then return '' else return tournamentCache[0].scoreboard[0].apiUrl
 
 	# Return a cached tournament by id
 	getTournament: (tournamentId) ->
@@ -220,7 +219,6 @@ class Standings
 		return {
 			name: competitor.name
 			email: competitor.email
-			language: competitor.language
 			registeredOn: Helpers.getStringFromDateStamp competitor.registered_on
 			uploads: competitor.uploads
 			goldMined: competitor.gold_mined
@@ -348,8 +346,7 @@ class Standings
 	winningCompetitorFields =
 		name: true
 		last_uploaded: true
-		language: true
 		uploads: true
-		address: true
+		apiUrl: true
 
 module.exports = new Standings()

@@ -186,9 +186,9 @@ class SocketIOCommunication
 					Logger.log err
 					turnOver showFog
 
-			runHostedTurn = (showFog, address) ->
+			runHostedTurn = (showFog, apiUrl) ->
 				json = socketWrapper.game.getGameStatus true
-				url = "#{address}/api/turn"
+				url = "#{apiUrl}/api/turn"
 				Logger.info "Sending request to #{url}", json
 				options =
 					json: json

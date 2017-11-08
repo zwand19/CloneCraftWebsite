@@ -60,13 +60,13 @@ class Match
 				won: winningCompetitor is @competitor1
 				match_over: done
 				id: game.id
-			url: @competitor1.address + '/api/gameResults'
+			url: @competitor1.apiUrl + '/api/gameResults'
 		HttpClient.post
 			json:
 				won: winningCompetitor is @competitor2
 				match_over: done
 				id: game.id
-			url: @competitor2.address + '/api/gameResults'
+			url: @competitor2.apiUrl + '/api/gameResults'
 		# either finish the match or start another game
 		if done then @matchOver(winningCompetitor) else @startGame()
 
@@ -74,7 +74,7 @@ class Match
 	getCommands: ->
 		options =
 			json: @game.getGameStatus true
-			url: @game.currentTeam.address + '/api/turn'
+			url: @game.currentTeam.apiUrl + '/api/turn'
 			timeout: Constants.tournament.requestTimeout
 		match = @
 		failed = false
@@ -82,7 +82,7 @@ class Match
 		.catch (err) ->
 			# If we did not successfully ping the endpoint then end the teams turn without any commands
 			failed = true
-			Logger.logApiError err, match.game.currentTeam.address, match.game.getGameStatus true
+			Logger.logApiError err, match.game.currentTeam.apiUrl, match.game.getGameStatus true
 		.then (commands) ->
 			if failed then commands = []
 			match.game.executeCommands commands
@@ -172,10 +172,10 @@ class Match
 				tournament_id: @tournamentId
 			options1 =
 				json: matchInfo1
-				url: "#{@competitor1.address}/api/matchStart"
+				url: "#{@competitor1.apiUrl}/api/matchStart"
 			options2 =
 				json: matchInfo2
-				url: "#{@competitor2.address}/api/matchStart"
+				url: "#{@competitor2.apiUrl}/api/matchStart"
 			HttpClient.post options1
 			HttpClient.post options2
 			@startGame()
