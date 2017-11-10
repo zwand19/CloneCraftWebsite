@@ -161,6 +161,10 @@ module.exports = (app, options) ->
 
 	app.get "/temp-super-secret-run-url", (req, res) ->
 		TournamentScheduler.runTournament()
+		.then ->
+			res.send(200)
+		.catch ->
+			res.send(500, "tournament not run")
 
 	app.post "/updateProfile", (req, res) ->
 		username = Authentication.authenticateRequest req, res
