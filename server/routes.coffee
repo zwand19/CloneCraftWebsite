@@ -159,6 +159,9 @@ module.exports = (app, options) ->
 				res.send(500, "tournament not run")
 		else res.send 500, "only an admin can run a tournament"
 
+	app.get "/temp-super-secret-run-url", (req, res) ->
+		TournamentScheduler.runTournament()
+
 	app.post "/updateProfile", (req, res) ->
 		username = Authentication.authenticateRequest req, res
 		Logger.info "incoming update profile request for #{username}"
