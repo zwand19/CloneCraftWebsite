@@ -2,7 +2,7 @@ GameRules = require '../settings/gameRules'
 
 # Represents a competitor for 1 game
 class Team
-	constructor: (@id, @name, @apiUrl, @type) ->
+	constructor: (@id, @name, @api_url, @type) ->
 		@base = null
 		@goldMined = 0
 		@minions = {}

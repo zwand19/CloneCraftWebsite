@@ -24,8 +24,8 @@ class Match
 		@gameInfos = []
 		@statuses = []
 		for i in [0...@bestOf]
-			team1 = new Team(@competitor1.id, @competitor1.name, @competitor1.apiUrl) if @competitor1 != null
-			team2 = new Team(@competitor2.id, @competitor2.name, @competitor2.apiUrl) if @competitor2 != null
+			team1 = new Team(@competitor1.id, @competitor1.name, @competitor1.api_url) if @competitor1 != null
+			team2 = new Team(@competitor2.id, @competitor2.name, @competitor2.api_url) if @competitor2 != null
 			if (i % 2) is 0
 				@games.push new Game(uuid.v1(), [team1, team2])
 			else @games.push new Game(uuid.v1(), [team2, team1])
@@ -60,13 +60,13 @@ class Match
 				won: winningCompetitor is @competitor1
 				match_over: done
 				id: game.id
-			url: @competitor1.apiUrl + '/api/gameResults'
+			url: @competitor1.api_url + '/api/gameResults'
 		HttpClient.post
 			json:
 				won: winningCompetitor is @competitor2
 				match_over: done
 				id: game.id
-			url: @competitor2.apiUrl + '/api/gameResults'
+			url: @competitor2.api_url + '/api/gameResults'
 		# either finish the match or start another game
 		if done then @matchOver(winningCompetitor) else @startGame()
 
@@ -74,7 +74,7 @@ class Match
 	getCommands: ->
 		options =
 			json: @game.getGameStatus true
-			url: @game.currentTeam.apiUrl + '/api/turn'
+			url: @game.currentTeam.api_url + '/api/turn'
 			timeout: Constants.tournament.requestTimeout
 		match = @
 		failed = false
@@ -82,7 +82,7 @@ class Match
 		.catch (err) ->
 			# If we did not successfully ping the endpoint then end the teams turn without any commands
 			failed = true
-			Logger.logApiError err, match.game.currentTeam.apiUrl, match.game.getGameStatus true
+			Logger.logApiError err, match.game.currentTeam.api_url, match.game.getGameStatus true
 		.then (commands) ->
 			if failed then commands = []
 			match.game.executeCommands commands
@@ -172,10 +172,10 @@ class Match
 				tournament_id: @tournamentId
 			options1 =
 				json: matchInfo1
-				url: "#{@competitor1.apiUrl}/api/matchStart"
+				url: "#{@competitor1.api_url}/api/matchStart"
 			options2 =
 				json: matchInfo2
-				url: "#{@competitor2.apiUrl}/api/matchStart"
+				url: "#{@competitor2.api_url}/api/matchStart"
 			HttpClient.post options1
 			HttpClient.post options2
 			@startGame()

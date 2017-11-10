@@ -28,7 +28,7 @@ class Standings
 			if competitor.last_uploaded
 				tournament.scoreboard[0].lastUploaded = Helpers.getStringFromDateStamp competitor.last_uploaded
 			tournament.scoreboard[0].uploads = competitor.uploads
-			tournament.scoreboard[0].apiUrl = competitor.apiUrl
+			tournament.scoreboard[0].api_url = competitor.api_url
 			cachedTournament = tournamentFromDbTournament tournament
 			tournamentCache.push cachedTournament
 			tournamentCache = tournamentCache.sort Helpers.sortTournamentsDescending
@@ -132,7 +132,7 @@ class Standings
 			stats
 
 	getKingApi: ->
-		if tournamentCache.length is 0 then return '' else return tournamentCache[0].scoreboard[0].apiUrl
+		if tournamentCache.length is 0 then return '' else return tournamentCache[0].scoreboard[0].api_url
 
 	# Return a cached tournament by id
 	getTournament: (tournamentId) ->
@@ -347,6 +347,6 @@ class Standings
 		name: true
 		last_uploaded: true
 		uploads: true
-		apiUrl: true
+		api_url: true
 
 module.exports = new Standings()

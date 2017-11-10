@@ -135,9 +135,9 @@ module.exports = (app, options) ->
 		email = req.body.data.email
 		username = req.body.data.username
 		password = req.body.data.password
-		apiUrl = req.body.data.apiUrl
-		Logger.info "incoming registration request #{username} with email address #{email} and api URL #{apiUrl}"
-		Register.register(email, username, password, apiUrl)
+		api_url = req.body.data.api_url
+		Logger.info "incoming registration request #{username} with email address #{email} and api URL #{api_url}"
+		Register.register(email, username, password, api_url)
 		.then ->
 			Logger.info 'registration request succeeded'
 			res.json

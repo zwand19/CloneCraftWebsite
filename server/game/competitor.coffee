@@ -1,6 +1,6 @@
 #Represents an AI competing in a tournament
 class Competitor
-	constructor: (@id, @name, @apiUrl, @gravatar) ->
+	constructor: (@id, @name, @api_url, @gravatar) ->
 		@inMatch = false
 		@matches = []
 		@matchIndex = 0

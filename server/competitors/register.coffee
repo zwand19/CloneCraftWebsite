@@ -17,8 +17,8 @@ class Register
 	#---------------
 	# Public Methods
 	#---------------
-	register: (email, username, password, apiUrl) ->
-		validateRegistration(email, username, password, apiUrl)
+	register: (email, username, password, api_url) ->
+		validateRegistration(email, username, password, api_url)
 		.then ->
 			#ensure no competitor with email or username already
 			Mongo.getCompetitor({ $or: [{email: email}, {name: username}]})
@@ -38,7 +38,7 @@ class Register
 				email: email
 				confirmed: false
 				confirmation_string: confirmationStr
-				api_url: apiUrl
+				api_url: api_url
 				registered_on: Helpers.getTimeStamp()
 				gravatar: Gravatar.url(email, { s: '350', d: 'mm' }, true)
 				uploads: 0
@@ -72,7 +72,7 @@ class Register
 	# Private Methods
 	#----------------
 	# Throw error if email, username, or api url is invalid
-	validateRegistration = (email, username, password, apiUrl) ->
+	validateRegistration = (email, username, password, api_url) ->
 		# validate email
 		if not email
 			return Helpers.promisedError new Error Messaging.Registration.ProvideEmail
@@ -99,7 +99,7 @@ class Register
 				return Helpers.promisedError new Error Messaging.Registration.PasswordInvalidCharacter
 		return Helpers.promisedData()
 		# validate api url
-		if not apiUrl or apiUrl.indexOf("http") < 0 or apiUrl.indexOf("://") < 0
+		if not api_url or api_url.indexOf("http") < 0 or api_url.indexOf("://") < 0
 			return Helpers.promisedError new Error Messaging.Registration.ApiUrl
 		return Helpers.promisedData()
 
