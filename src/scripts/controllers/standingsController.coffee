@@ -2,10 +2,6 @@ class StandingsController
 	constructor: ($scope, $http, $location) ->
 		$scope.competitors = []
 		$scope.infoBubbles = [
-			name: 'Code Uploads'
-			total: 0
-			value: null
-		,
 			name: 'Games Played'
 			total: 0
 			value: null
@@ -130,18 +126,17 @@ class StandingsController
 			)
 			.success((result) ->
 				if not result.success then return alert result.msg
-				$scope.infoBubbles[0].total = result.data.codeUploads
-				$scope.infoBubbles[1].total = result.data.gamesPlayed
-				$scope.infoBubbles[2].total = result.data.codeWarriors
-				$scope.infoBubbles[3].total = result.data.goldMined
-				$scope.infoBubbles[4].total = result.data.minionsKilled
-				$scope.infoBubbles[5].total = result.data.minersBuilt
-				$scope.infoBubbles[6].total = result.data.archersBuilt
-				$scope.infoBubbles[7].total = result.data.seersBuilt
-				$scope.infoBubbles[8].total = result.data.foxesBuilt
-				$scope.infoBubbles[9].total = result.data.tanksBuilt
-				$scope.infoBubbles[10].total = result.data.greaterMinionsBuilt
-				$scope.infoBubbles[11].total = result.data.lesserMinionsBuilt
+				$scope.infoBubbles[0].total = result.data.gamesPlayed
+				$scope.infoBubbles[1].total = result.data.codeWarriors
+				$scope.infoBubbles[2].total = result.data.goldMined
+				$scope.infoBubbles[3].total = result.data.minionsKilled
+				$scope.infoBubbles[4].total = result.data.minersBuilt
+				$scope.infoBubbles[5].total = result.data.archersBuilt
+				$scope.infoBubbles[6].total = result.data.seersBuilt
+				$scope.infoBubbles[7].total = result.data.foxesBuilt
+				$scope.infoBubbles[8].total = result.data.tanksBuilt
+				$scope.infoBubbles[9].total = result.data.greaterMinionsBuilt
+				$scope.infoBubbles[10].total = result.data.lesserMinionsBuilt
 			)
 			.error((error) ->
 				alert 'Server Error.'

@@ -25,9 +25,6 @@ class Standings
 			if competitor is null
 				Logger.error "Could not find winner of tournament #{tournamentId}"
 				throw new Error Messaging.ServerError
-			if competitor.last_uploaded
-				tournament.scoreboard[0].lastUploaded = Helpers.getStringFromDateStamp competitor.last_uploaded
-			tournament.scoreboard[0].uploads = competitor.uploads
 			tournament.scoreboard[0].api_url = competitor.api_url
 			cachedTournament = tournamentFromDbTournament tournament
 			tournamentCache.push cachedTournament
@@ -187,7 +184,6 @@ class Standings
 		{
 			$group:
 				_id: ""
-				uploads: { $sum: "$uploads" }
 				gold_mined: { $sum: "$gold_mined" }
 				minions_killed: { $sum: "$minions_killed" }
 				miners_built: { $sum: "$miners_built" }
@@ -201,7 +197,6 @@ class Standings
 		{
 			$project:
 				_id: 0
-				uploads: "$uploads"
 				gold_mined: "$gold_mined"
 				minions_killed: "$minions_killed"
 				miners_built: "$miners_built"
@@ -220,7 +215,6 @@ class Standings
 			name: competitor.name
 			email: competitor.email
 			registeredOn: Helpers.getStringFromDateStamp competitor.registered_on
-			uploads: competitor.uploads
 			goldMined: competitor.gold_mined
 			gameWins: competitor.game_wins
 			gameLosses: competitor.game_losses
@@ -235,7 +229,6 @@ class Standings
 			tanksBuilt: competitor.tanks_built
 			gravatar: competitor.gravatar
 			blurb: competitor.blurb
-			lastUploaded: Helpers.getStringFromDateStamp competitor.last_uploaded
 			greaterMinionsBuilt: competitor.greater_minions_built
 			lesserMinionsBuilt: competitor.lesser_minions_built
 			gruntsBuilt: competitor.grunts_built
@@ -243,7 +236,6 @@ class Standings
 
 	# Convert the db stats aggregate to data to be returned to client
 	statsFromDbStats = (dbStats) ->
-		if not dbStats.uploads then dbStats.uploads = 0
 		if not dbStats.gold_mined then dbStats.gold_mined = 0
 		if not dbStats.minions_killed then dbStats.minions_killed = 0
 		if not dbStats.miners_built then dbStats.miners_built = 0
@@ -254,7 +246,6 @@ class Standings
 		if not dbStats.greater_minions_built then dbStats.greater_minions_built = 0
 		if not dbStats.lesser_minions_built then dbStats.lesser_minions_built = 0
 		return {
-			codeUploads: dbStats.uploads
 			goldMined: dbStats.gold_mined
 			minionsKilled: dbStats.minions_killed
 			minersBuilt: dbStats.miners_built
@@ -345,8 +336,6 @@ class Standings
 	# Extra fields to pull from the winning competitor for the tournament standings page
 	winningCompetitorFields =
 		name: true
-		last_uploaded: true
-		uploads: true
 		api_url: true
 
 module.exports = new Standings()

@@ -41,7 +41,6 @@ class Register
 				api_url: api_url
 				registered_on: Helpers.getTimeStamp()
 				gravatar: Gravatar.url(email, { s: '350', d: 'mm' }, true)
-				uploads: 0
 				gold_mined: 0
 				game_wins: 0
 				game_losses: 0
