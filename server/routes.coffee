@@ -19,12 +19,10 @@ module.exports = (app, options) ->
 	# GET Methods
 	#------------
 	app.get "/", (req, res) ->
-		Logger.info 'incoming request to get index.html'
 		res.sendFile "#{options.base}/index.html"
 
 	app.get "/competitors/:name", (req, res) ->
 		competitorName = req.params.name
-		Logger.info "incoming request for competitor #{competitorName}"
 		Standings.getCompetitorDetails(competitorName)
 		.then (details) ->
 			Logger.info 'competitor request succeeded'
@@ -38,7 +36,6 @@ module.exports = (app, options) ->
 	app.get "/competitors/:name/:tournamentId", (req, res) ->
 		competitorName = req.params.name
 		tournamentId = req.params.tournamentId
-		Logger.info "incoming request for competitor's tournament detail #{competitorName} in #{tournamentId}"
 		Standings.getCompetitorTournamentMatches(competitorName, tournamentId)
 		.then (details) ->
 			Logger.info 'competitor tournament detail request succeeded'
@@ -53,7 +50,6 @@ module.exports = (app, options) ->
 		try
 			path = require('url').parse(req.url,true).query.path
 			zipPath = Path.join __dirname, '../', path
-			Logger.info "incoming request to download game file at #{zipPath}"
 
 			zipSize = FS.statSync(zipPath).size
 
@@ -69,31 +65,23 @@ module.exports = (app, options) ->
 			throw err
 
 	app.get "/tournaments", (req, res) ->
-		Logger.info 'incoming tournaments GET request'
-		Logger.info 'request succeeded'
 		res.json { success: true, data: Standings.getTournamentNames() }
 
 	app.get "/tournaments/:id", (req, res) ->
 		tournamentId = req.params.id
-		Logger.info "incoming tournament details request for #{tournamentId}"
 		Standings.getTournament(tournamentId)
 		.then (details) ->
-			Logger.info 'tournament details request succeeded'
 			res.json { success: true, data: details }
 		.catch (err) ->
-			Logger.info 'tournament details request failed'
 			res.json
 				success: false
 				msg: Messaging.handleErrorMessage err.message
 
 	app.get "/tournaments-general", (req, res) ->
-		Logger.info 'incoming request for general tournaments'
 		Standings.getGlobalDetails()
 		.then (details) ->
-			Logger.info 'general tournaments request succeeded'
 			res.json { success: true, data: details }
 		.catch (err) ->
-			Logger.info 'general tournaments request failed'
 			res.json
 				success: false
 				msg: Messaging.handleErrorMessage err.message
@@ -103,13 +91,10 @@ module.exports = (app, options) ->
 	#-------------
 	app.post "/confirm/:id", (req, res) ->
 		confirmationString = req.params.id
-		Logger.info "incoming confirmation request for #{confirmationString}"
 		Confirm.confirm(confirmationString)
 		.then (result) ->
-			Logger.info 'confirmation request succeeded'
 			res.json { success: true, uploadId: result.uploadId, msg: result.msg }
 		.catch (err) ->
-			Logger.info 'confirmation request failed'
 			res.json
 				success: false
 				msg: Messaging.handleErrorMessage err.message
@@ -117,16 +102,13 @@ module.exports = (app, options) ->
 	app.post "/login", (req, res) ->
 		credential = req.body.data.credential
 		password = req.body.data.password
-		Logger.info "incoming login request for #{credential}"
 		Authentication.authenticateLogin(credential, password)
 		.then (result) ->
-			Logger.info "login successful for #{credential}"
 			res.json
 				success: true
 				username: result.username
 				token: result.token
 		.catch (err) ->
-			Logger.info "login failed for #{credential}"
 			Logger.info err
 			res.json
 				success: false
@@ -168,15 +150,12 @@ module.exports = (app, options) ->
 
 	app.post "/updateProfile", (req, res) ->
 		username = Authentication.authenticateRequest req, res
-		Logger.info "incoming update profile request for #{username}"
 		if not req.body
 			return res.json { success: false, msg: Messaging.handleErrorMessage Messaging.ServerError }
 		Profile.updateProfile(username, req.body)
 		.then ->
-			Logger.info 'update profile request succeeded'
 			res.json { success: true }
 		.catch (err) ->
-			Logger.info 'update profile request failed'
 			res.json
 				success: false
 				msg: Messaging.handleErrorMessage err.message

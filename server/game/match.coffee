@@ -41,10 +41,8 @@ class Match
 		winningCompetitor = null
 		if (winner.id is @competitor1.id)
 			@competitor1Wins++
-			Logger.log "game winner: #{@competitor1.name}"
 		else
 			@competitor2Wins++
-			Logger.log "game winner: #{@competitor2.name}"
 		# get match winner
 		if @competitor1Wins > @competitor2Wins
 			winningCompetitor = @competitor1
@@ -82,7 +80,6 @@ class Match
 		.catch (err) ->
 			# If we did not successfully ping the endpoint then end the teams turn without any commands
 			failed = true
-			Logger.logApiError err, match.game.currentTeam.api_url, match.game.getGameStatus true
 		.then (commands) ->
 			if failed then commands = []
 			match.game.executeCommands commands
@@ -116,17 +113,14 @@ class Match
 		@competitor2.finishedMatch() if @competitor2
 		# if competitor1 won
 		if @competitor1 and @winner and @competitor1.name is @winner.name
-			Logger.info "MATCH WINNER: #{@competitor1.name}"
 			sendMatchStatsToDb @competitor1, 'win'
 			if @competitor2 then sendMatchStatsToDb @competitor2, 'loss'
 		# if competitor2 won
 		else if @competitor2 and @winner and @competitor2.name is @winner.name
-			Logger.info "MATCH WINNER: #{@competitor2.name}"
 			sendMatchStatsToDb @competitor2, 'win'
 			if @competitor1 then sendMatchStatsToDb @competitor1, 'loss'
 		# if there was a draw
 		else if @competitor1 and @competitor2
-			Logger.info "MATCH TIED: #{@competitor1.name} vs. #{@competitor2.name}"
 			sendMatchStatsToDb @competitor1, 'draw'
 			sendMatchStatsToDb @competitor2, 'draw'
 		# write match to file
@@ -140,7 +134,6 @@ class Match
 		if not @game
 			Logger.error 'match not properly terminated'
 			throw new Error 'match not properly terminated'
-		Logger.info "starting game between #{@competitor1.name} and #{@competitor2.name}"
 		# push initial game status
 		@statuses[@getGameIndex()].push @game.getGameStatus false
 		@getCommands()
@@ -155,7 +148,6 @@ class Match
 			process.nextTick ->
 				@matchOver(@competitor1)
 		else
-			Logger.info "MATCH START: #{@competitor1.name} vs. #{@competitor2.name}"
 			gameIds = []
 			for game in @games
 				gameIds.push game.id

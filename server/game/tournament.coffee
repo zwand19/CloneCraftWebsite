@@ -86,7 +86,6 @@ class BracketTournament
 	# called when a match finishes, checks if the round and/or tournament is over
 	matchOver: (match) =>
 		@matchesInProgress--
-		Logger.log "Match finished: #{Util.inspect match.id}"
 		if (match.winner is match.competitor1)
 			@duel.score match.id, [1, 0] if match.competitor2 isnt null
 		else 

@@ -25,7 +25,6 @@ class SocketIOCommunication
 	# Public Methods
 	#---------------
 	garbageCollect: ->
-		Logger.info "Cleaning up unused games..."
 		len = @socketWrappers.length
 		socketsRemoved = 0
 		gamesInMemory = 0
@@ -44,7 +43,6 @@ class SocketIOCommunication
 		# log cleanup info
 		if socketsRemoved
 			Logger.info "Done! Destroyed #{socketsRemoved} games. #{gamesInMemory} games still in memory. #{@socketWrappers.length} sockets connected."
-		else Logger.info "Done! No games destroyed. #{gamesInMemory} games still in memory. #{@socketWrappers.length} sockets connected"
 
 	setup: (server) ->
 		@socketWrappers = []
@@ -70,7 +68,7 @@ class SocketIOCommunication
 				socketWrapper.lastUpdate = new Date()
 				# Client should know not to send continue for human turn
 				if socketWrapper.game.currentTeam.type is 'human'
-					Logger.info 'socket continue called for human'
+					
 					return Helpers.promisedError new Error 'cannot continue for human turn'
 				emitStatusOrRunTurn showFog, true
 
@@ -80,7 +78,7 @@ class SocketIOCommunication
 					if (data.teams[0].type is 'king' or data.teams[1].type is 'king') and Standings.getKingApi() is ''
 						return socket.emit 'no king'
 					createGame data.teams, socketWrapper, data.authToken
-					Logger.info "Created Game for socket"
+					
 					socketWrapper.gameHasHuman = socketWrapper.game.teams[0].type is 'human' or socketWrapper.game.teams[1].type is 'human'
 					if socketWrapper.gameHasHuman
 						emitStatusOrRunTurn data.showFog, false
@@ -99,7 +97,7 @@ class SocketIOCommunication
 					@socketWrappers.unshift socketWrapper
 
 			socket.on 'end game', () ->
-				Logger.info "ending game for socket id #{socket.id}"
+				
 				socketWrapper.game = null
 				socketWrapper.lastUpdate = null
 
@@ -152,10 +150,10 @@ class SocketIOCommunication
 						Mongo.getCompetitor({name: currentTeam.username}, {api_url: true})
 						.then (competitor) ->
 							if (!competitor)
-								Logger.info "Could not find competitor #{currentTeam.username}"
+								
 								socket.emit 'game destroyed'
 								return
-							Logger.info "Found competitor #{currentTeam.username}, api url - #{competitor.api_url}"
+							
 							socketWrapper.game.currentTeam.api_url = competitor.api_url
 							runHostedTurn(showFog, competitor.api_url)
 						.catch (err) ->
@@ -189,7 +187,7 @@ class SocketIOCommunication
 			runHostedTurn = (showFog, api_url) ->
 				json = socketWrapper.game.getGameStatus true
 				url = "#{api_url}/api/turn"
-				Logger.info "Sending request to #{url}", json
+				
 				options =
 					json: json
 					url: url
@@ -211,7 +209,7 @@ class SocketIOCommunication
 	# Private Methods
 	#----------------
 	createGame = (teams, socketWrapper, authToken) ->
-		Logger.info "creating game for socket id #{socketWrapper.id}. Teams is #{typeof teams}", teams
+		
 		gameTeams = []
 		# Create teams from client data
 		for team, i in teams
