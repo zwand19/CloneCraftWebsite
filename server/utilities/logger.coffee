@@ -26,6 +26,7 @@ class Logger
 			timeStamp = require('../helpers').getTimeStamp()
 			text = "(#{timeStamp}) #{severity}: #{msg}\n"
 			text += "metadata: #{metadataString}\n" if metadata
+			### COMMENTING OUT TO ONLY WRITE TO FULL_LOG TO SAVE MONEY FOR NOW
 			FS.exists filePath, (exists) ->
 				if exists
 					FS.appendFile filePath, text, (err) ->
@@ -37,6 +38,7 @@ class Logger
 						if err
 							console.error "ERROR CREATING FILE #{filePath}"
 							console.error err
+			###
 			fullLogPath = getFilePath "full_log.txt"
 			FS.exists fullLogPath, (exists) ->
 				if exists
