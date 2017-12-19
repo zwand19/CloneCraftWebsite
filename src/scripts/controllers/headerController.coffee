@@ -138,10 +138,6 @@ class HeaderController
 			$location.path 'CloneCraft/standings'
 			headerButtonClicked()
 
-		$scope.uploadClicked = ->
-			$location.path 'CloneCraft/upload'
-			headerButtonClicked()
-
 		#----------------
 		# Private Methods
 		#----------------

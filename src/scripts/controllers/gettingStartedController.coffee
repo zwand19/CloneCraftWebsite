@@ -2,8 +2,8 @@ class GettingStartedController
 	constructor: ($scope, $location, authService) ->
 		$scope.loggedIn = authService.isLoggedIn()
 
-		$scope.uploadClicked = ->
-			$location.path '/CloneCraft/upload'
+		$scope.tryGameClicked = ->
+			$location.path '/CloneCraft/game'
 
 		authService.onLoggedIn ->
 			$scope.loggedIn = true
