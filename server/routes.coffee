@@ -131,7 +131,7 @@ module.exports = (app, options) ->
 				success: false
 				msg: Messaging.handleErrorMessage err.message
 
-	app.post "/run", (req, res) ->
+	app.get "/run", (req, res) ->
 		username = Authentication.authenticateRequest req, res
 		if username is "zwand"
 			TournamentScheduler.runTournament()
