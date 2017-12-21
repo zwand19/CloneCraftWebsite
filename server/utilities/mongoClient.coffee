@@ -62,15 +62,16 @@ class MongoClient
 				database.close()
 				competitors[0]
 
-		executeTournamentsFunc "findOne", { _id: new Mongo.BSONPure.ObjectID(id) }, fields
-
-	getRoundRobinTournaments: ->
-		executeTournamentsFunc "find", {}, null , (result) -> result.toArray()
-
 	addRoundRobinTournament: (tournament, scoreboard, standings) ->
 		dbTourney = buildDbTournamentFromTournament(tournament, scoreboard, standings)
 		executeTournamentsFunc "insert", dbTourney, null, (tournaments) ->
 			tournaments[0]
+
+	getRoundRobinTournament: (id, fields) ->
+		executeTournamentsFunc "findOne", { _id: new Mongo.BSONPure.ObjectID(id) }, fields
+
+	getRoundRobinTournaments: ->
+		executeTournamentsFunc "find", {}, null , (result) -> result.toArray()
 
 	#----------------
 	# Private methods
