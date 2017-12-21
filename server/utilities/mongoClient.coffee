@@ -1,5 +1,6 @@
 Config = require '../config.json'
 Mongo = require 'mongodb'
+Mongo.BSONPure = require('bson').BSONPure
 Constants = require '../settings/constants'
 Helpers = require '../helpers'
 Q = require "q"
