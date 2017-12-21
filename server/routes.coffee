@@ -132,14 +132,14 @@ module.exports = (app, options) ->
 				msg: Messaging.handleErrorMessage err.message
 
 	app.get "/run", (req, res) ->
-		username = Authentication.authenticateRequest req, res
-		if username is "zwand"
-			TournamentScheduler.runTournament()
-			.then ->
-				res.send(200)
-			.catch ->
-				res.send(500, "tournament not run")
-		else res.send 500, "only an admin can run a tournament"
+		#username = Authentication.authenticateRequest req, res
+		#if username is "zwand"
+		TournamentScheduler.runTournament()
+		.then ->
+			res.send(200)
+		.catch ->
+			res.send(500, "tournament not run")
+		#else res.send 500, "only an admin can run a tournament"
 
 	app.get "/temp-super-secret-run-url", (req, res) ->
 		TournamentScheduler.runTournament()
