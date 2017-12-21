@@ -55,8 +55,8 @@ class FileManager
 			localPath = matchPath.substring(matchPath.indexOf('matches'))
 			match.games[i].zipPath = "#{localPath}.zip"
 			promises.push(Helpers.writeToClonecraftFile(matchPath, gameString)
-				.then (path) ->
-					Zipper.zipAndDeleteFiles(["#{path}.clonecraft"], "#{path}.zip")
+				#.then (path) ->
+				#	Zipper.zipAndDeleteFiles(["#{path}.clonecraft"], "#{path}.zip")
 				.catch (err) ->
 					Logger.error 'could not write file to zip', null, err
 					throw err)
