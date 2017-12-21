@@ -68,7 +68,7 @@ class MongoClient
 			tournaments[0]
 
 	getRoundRobinTournament: (id, fields) ->
-		executeTournamentsFunc "findOne", { _id: new Mongo.BSONPure.ObjectID(id) }, fields
+		executeTournamentsFunc "findOne", { _id: new Mongo.ObjectID(id) }, fields
 
 	getRoundRobinTournaments: ->
 		executeTournamentsFunc "find", {}, null , (result) -> result.toArray()
