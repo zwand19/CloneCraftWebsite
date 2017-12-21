@@ -1,6 +1,5 @@
 Config = require '../config.json'
 Mongo = require 'mongodb'
-Mongo.BSONPure = require('bson').BSONPure
 Constants = require '../settings/constants'
 Helpers = require '../helpers'
 Q = require "q"
@@ -63,7 +62,6 @@ class MongoClient
 				database.close()
 				competitors[0]
 
-	getRoundRobinTournament: (id, fields) ->
 		executeTournamentsFunc "findOne", { _id: new Mongo.BSONPure.ObjectID(id) }, fields
 
 	getRoundRobinTournaments: ->
