@@ -1,21 +1,10 @@
 FS = require 'fs-extra'
 Logger = require './utilities/logger'
 Mkdirp = require 'mkdirp'
-Ncp = require('ncp').ncp
 Path = require 'path'
 Q = require 'q'
 
 Helpers =
-	copyDirectoryRecursively: (source, target) ->
-		deferred = Q.defer()
-		Ncp source, target, (err) ->
-			if err
-				Logger.error "Could not copy directory recurively from #{source} to #{target}"
-				Logger.error err
-				deferred.reject err
-			else deferred.resolve()
-		deferred.promise
-
 	# replace all 'x' in a string with a random char and 'y' with the variant of the UUID
 	createRandomString: (template) ->
 		return template.replace /[xy]/g, (c) ->

@@ -89,15 +89,15 @@ class StandingsController
 						if $scope.tournaments[i].id is result.data.id
 							$scope.tournaments[i] = result.data
 							$scope.selectedTournament = $scope.tournaments[i]
-							$scope.infoBubbles[3].value = result.data.goldMined
-							$scope.infoBubbles[4].value = result.data.minionsKilled
-							$scope.infoBubbles[5].value = result.data.minersBuilt
-							$scope.infoBubbles[6].value = result.data.archersBuilt
-							$scope.infoBubbles[7].value = result.data.seersBuilt
-							$scope.infoBubbles[8].value = result.data.foxesBuilt
-							$scope.infoBubbles[9].value = result.data.tanksBuilt
-							$scope.infoBubbles[10].value = result.data.greaterMinionsBuilt
-							$scope.infoBubbles[11].value = result.data.lesserMinionsBuilt
+							$scope.infoBubbles[2].value = result.data.goldMined
+							$scope.infoBubbles[3].value = result.data.minionsKilled
+							$scope.infoBubbles[4].value = result.data.minersBuilt
+							$scope.infoBubbles[5].value = result.data.archersBuilt
+							$scope.infoBubbles[6].value = result.data.seersBuilt
+							$scope.infoBubbles[7].value = result.data.foxesBuilt
+							$scope.infoBubbles[8].value = result.data.tanksBuilt
+							$scope.infoBubbles[9].value = result.data.greaterMinionsBuilt
+							$scope.infoBubbles[10].value = result.data.lesserMinionsBuilt
 				)
 				.error((error) ->
 					alert 'Server Error.'
