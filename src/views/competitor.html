@@ -133,7 +133,7 @@
                                             <div ng-show="match.opened" class="container slightly-smaller-font" ng-repeat="game in match.games">
                                                 <p class="">game {{$index + 1}}</p>
                                                 <p class="margin-left" ng-class="getResultClass(game.result)">{{game.result}}</p>
-                                                <a ng-href="/download?path={{game.path}}" class="pull-right btn btn-primary slightly-smaller-font" download="{{competitor.name}} vs. {{match.opponent}} game {{$index + 1}}.zip">download</a>
+                                                <a ng-href="/download?path={{game.path}}" class="pull-right btn btn-primary slightly-smaller-font" download="{{competitor.name}} vs. {{match.opponent}} game {{$index + 1}}.clonecraft">download</a>
                                             </div>
                                         </div>
                                     </div>
