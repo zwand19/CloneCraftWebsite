@@ -53,7 +53,7 @@ class FileManager
 			fileName = nameResolverFunction match, i
 			matchPath = Path.join match.folderPath, fileName
 			localPath = matchPath.substring(matchPath.indexOf('matches'))
-			match.games[i].zipPath = "#{localPath}.zip"
+			match.games[i].zipPath = "#{localPath}.clonecraft"
 			promises.push(Helpers.writeToClonecraftFile(matchPath, gameString)
 				#.then (path) ->
 				#	Zipper.zipAndDeleteFiles(["#{path}.clonecraft"], "#{path}.zip")
